@@ -1,39 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import MovieCard from "../MovieCard/movie-card";
 import MovieView from "../MovieView/movie-view";
 
 const MainView = () => {
-  const [movies] = useState([
-    {
-      id: 1,
-      title: "The Dark Knight",
-      description:
-        "Batman faces the Joker, a criminal mastermind unleashing chaos in Gotham City.",
-      image: "https://via.placeholder.com/150",
-      genre: "Action",
-      director: "Christopher Nolan",
-    },
-    {
-      id: 2,
-      title: "The Life Aquatic with Steve Zissou",
-      description:
-        "An eccentric oceanographer seeks revenge against a mythical shark while documenting his journey.",
-      image: "https://via.placeholder.com/150",
-      genre: "Comedy",
-      director: "Wes Anderson",
-    },
-    {
-      id: 3,
-      title: "Inception",
-      description:
-        "A skilled thief leads a team of dream extractors to plant an idea into a target's subconscious.",
-      image: "https://via.placeholder.com/150",
-      genre: "Science Fiction",
-      director: "Christopher Nolan",
-    },
-  ]);
-
+  // Step 1: Set the initial value of movies to an empty array and add setMovies function
+  const [movies, setMovies] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(null);
+
+  // Step 2: Fetch movies from API and update state
+  useEffect(() => {
+    fetch("https://movies-flixx-19a7d58ab0e6.herokuapp.com/movies")
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("movies from API:", data);
+        setMovies(data); // Update the state with fetched movies
+      })
+      .catch((error) => console.error("Error fetching movies:", error));
+  }, []);
 
   return (
     <div>
@@ -45,7 +28,7 @@ const MainView = () => {
           <div style={{ display: "flex", gap: "20px", flexWrap: "wrap" }}>
             {movies.map((movie) => (
               <MovieCard
-                key={movie.id}
+                key={movie._id} // Ensure you're using the correct ID property
                 movie={movie}
                 onMovieClick={() => setSelectedMovie(movie)}
               />
@@ -58,4 +41,3 @@ const MainView = () => {
 };
 
 export default MainView;
-
