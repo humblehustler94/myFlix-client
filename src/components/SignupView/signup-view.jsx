@@ -31,21 +31,19 @@ export const SignupView = () => {
         "Content-Type": "application/json",
       },
     })
-
-    .then((response) => response.json())
-      .then((data) => {
-        if (data.success) {
+      .then((response) => {
+        if (response.ok) {
           alert("Signup successful");
-          localStorage.setItem("token", data.token); // Assuming a token is returned
-          localStorage.setItem("user", JSON.stringify(data.user)); // Assuming user data
-          onLoggedIn(data.user, data.token); // Call parent component handler
+          navigate("/login"); // Navigate to login view
         } else {
-          alert(data.message || "Signup failed");
+          response.json().then((error) => {
+            alert(error.message || "Signup failed");
+          });
         }
       })
       .catch((error) => {
-        console.error("Error:", error);
-        alert("Something went wrong. Please try again later.");
+        console.error("Network error:", error);
+        alert("Unable to connect to server. Please try again later.");
       });
   };
 
@@ -68,7 +66,6 @@ export const SignupView = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
-          minLength="6"
         />
       </label>
       <label>
