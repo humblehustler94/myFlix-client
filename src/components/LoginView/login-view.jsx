@@ -1,86 +1,86 @@
-import { useState } from "react";
+// Create new component folder LoginView and create the following file login-view.jsx add the following code 
+// src/components/login-view/login-view.jsx
+import React, { useState } from "react";
+import PropTypes from "prop-types"; // Import PropTypes
 
 export const LoginView = ({ onLoggedIn }) => {
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
-    const [loading, setLoading] = useState(false); // 3.5 new code line added
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
+  const handleSubmit = (event) => {
+    // Prevent default form submission behavior
+    event.preventDefault();
 
-        // Enhanced Validation
-        if (username.length < 8 || password.length < 12) {
-            alert("Username must be at least 8 characters and password 12 characters");
-            return;
-        }
-
-        const data = {
-            Username: username,
-            Password: password,
-        };
-
-        setLoading(true); // 3.5 new code line added
-
-        fetch("https://movies-flixx-19a7d58ab0e6.herokuapp.com/login", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(data),
-        })
-            .then((response) => {
-                if (!response.ok) {
-                    return response.json().then((err) => {
-                        throw new Error(err.message || "Invalid credentials");
-                    });
-                }
-                return response.json();
-            })
-            .then((data) => {
-                console.log("Login response:", data);
-
-
-                if (data.user) {
-                    localStorage.setItem("user", JSON.stringify(data.user));
-                    localStorage.setItem("token", data.token);
-                    onLoggedIn(data.user, data.token);
-                } else {
-                    alert("No such user");
-                }
-            })
-            .catch((error) => {
-                alert(error.message);
-            })
-            .finally(() => {
-                setLoading(false);
-            });
+    const data = {
+      Username: username,
+      Password: password,
     };
 
-    const isFormValid = username.length >= 8 && password.length >= 12;
+    // Replace with your actual API endpoint
+    fetch("https://movies-flixx-19a7d58ab0e6.herokuapp.com/login", {
+      // <-- !! REPLACE YOUR_API_URL !!
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          // Handle different error statuses if needed
+          throw new Error("Login failed. Please check username and password.");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log("Login response: ", data);
+        if (data.user && data.token) {
+          // Store user and token in localStorage
+          localStorage.setItem("user", JSON.stringify(data.user));
+          localStorage.setItem("token", data.token);
+          // Call the callback function passed from MainView
+          onLoggedIn(data.user, data.token);
+        } else {
+          alert("Login failed: No user data or token returned.");
+        }
+      })
+      .catch((e) => {
+        console.error("Login error:", e);
+        alert(`Something went wrong: ${e.message}`);
+      });
+  };
 
-    return (
-        <form onSubmit={handleSubmit}>
-            <label>
-                Username:
-                <input
-                    type="text"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                    placeholder="Enter username"
-                />
-            </label>
-            <label>
-                Password:
-                <input
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder="Enter password"
-                />
-            </label>
-            <button type="submit" disabled={!isFormValid || loading}>
-                {loading ? "Logging in..." : "Submit"}
-            </button>
-        </form>
-    );
+  return (
+    <form onSubmit={handleSubmit}>
+      <h2>Login</h2>
+      <label>
+        Username:
+        <input
+          type="text"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          required
+          minLength="6" // Basic validation
+        />
+      </label>
+      <br />
+      <label>
+        Password:
+        <input
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+          minLength ="8"
+        />
+      </label>
+      <br />
+      <button type="submit">Submit</button>
+    </form>
+  );
+};
+
+// Prop type validation
+LoginView.propTypes = {
+  onLoggedIn: PropTypes.func.isRequired,
 };

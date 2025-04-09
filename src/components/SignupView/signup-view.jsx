@@ -1,21 +1,14 @@
-import { useState } from "react";
-//import { useNavigate } from "react-router-dom"; // Assuming React Router v6
+// src/components/signup-view/signup-view.jsx
+import React, { useState } from "react";
 
 export const SignupView = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [birthday, setBirthday] = useState("");
-  //const navigate = useNavigate(); // React Router navigation
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
-    // Basic validation
-    if (username.length < 3) {
-      alert("Username must be at least 3 characters long.");
-      return;
-    }
 
     const data = {
       Username: username,
@@ -24,33 +17,41 @@ export const SignupView = () => {
       Birthday: birthday,
     };
 
+    // Replace with your actual API endpoint for user registration
     fetch("https://movies-flixx-19a7d58ab0e6.herokuapp.com/users", {
+      // <-- !! REPLACE YOUR_API_URL !!
       method: "POST",
       body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
       },
     })
-
-    .then((response) => response.json())
-      .then((data) => {
-        if (data.success) {
-          alert("Signup successful");
-          localStorage.setItem("token", data.token); // Assuming a token is returned
-          localStorage.setItem("user", JSON.stringify(data.user)); // Assuming user data
-          onLoggedIn(data.user, data.token); // Call parent component handler
+      .then((response) => {
+        if (response.ok) {
+          alert("Signup successful! Please log in.");
+          // Optionally clear the form or redirect (though here we just alert)
+          setUsername("");
+          setPassword("");
+          setEmail("");
+          setBirthday("");
+          // You might want to trigger a switch back to the login view here
+          // depending on your UI setup in MainView
         } else {
-          alert(data.message || "Signup failed");
+          response.text().then((text) => {
+            // Read response body for details
+            throw new Error(`Signup failed: ${text || response.statusText}`);
+          });
         }
       })
-      .catch((error) => {
-        console.error("Error:", error);
-        alert("Something went wrong. Please try again later.");
+      .catch((e) => {
+        console.error("Signup error:", e);
+        alert(`Something went wrong: ${e.message}`);
       });
   };
 
   return (
     <form onSubmit={handleSubmit}>
+      <h2>Sign Up</h2>
       <label>
         Username:
         <input
@@ -58,9 +59,10 @@ export const SignupView = () => {
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required
-          minLength="3"
+          minLength="5" // Example validation
         />
       </label>
+      <br />
       <label>
         Password:
         <input
@@ -68,9 +70,10 @@ export const SignupView = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
-          minLength="6"
+          minLength="8" // Example validation
         />
       </label>
+      <br />
       <label>
         Email:
         <input
@@ -80,16 +83,20 @@ export const SignupView = () => {
           required
         />
       </label>
+      <br />
       <label>
         Birthday:
         <input
           type="date"
           value={birthday}
           onChange={(e) => setBirthday(e.target.value)}
-          required
         />
       </label>
+      <br />
       <button type="submit">Submit</button>
     </form>
   );
 };
+
+// No props needed for this basic version, but you could add one
+// e.g., to signal success back to MainView if needed for UI changes.

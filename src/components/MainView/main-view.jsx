@@ -1,116 +1,138 @@
+// src/components/main-view/main-view.jsx
 import React, { useState, useEffect } from "react";
-import { LoginView } from "../LoginView/login-view"; // 3.5 new code line added.
 import { MovieCard } from "../MovieCard/movie-card";
 import { MovieView } from "../MovieView/movie-view";
-import { SignupView } from "../SignupView/signup-view";
+import { LoginView } from "../LoginView/login-view"; // Import LoginView
+import { SignupView } from "../SignupView/signup-view"; // Import SignupView
 
-const MainView = () => {
-  const [movies, setMovies] = useState([]); // set initial value of movies to an empty array and add setMovies function 
+export const MainView = () => {
+  // Get user and token from localStorage on initial load
+  const storedUser = JSON.parse(localStorage.getItem("user"));
+  const storedToken = localStorage.getItem("token");
+
+  const [movies, setMovies] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(null);
-  const [user, setUser] = useState(null); // 3.5 new code line added.
-  const [token, setToken] = useState(null); // 3.5 new code line added.
-  const [error, setError] = useState(""); // 3.5 new code line added.
+  // Initialize user and token state from localStorage
+  const [user, setUser] = useState(storedUser ? storedUser : null);
+  const [token, setToken] = useState(storedToken ? storedToken : null);
+  // State to toggle between login and signup view
+  const [showSignup, setShowSignup] = useState(false);
 
-  // Persistent login check
+  // Function to handle successful login
+  const handleLoggedIn = (loggedInUser, loggedInToken) => {
+    setUser(loggedInUser);
+    setToken(loggedInToken);
+    // No need to set localStorage here, LoginView already does it
+  };
+
+  // Function to handle logout
+  const handleLogout = () => {
+    setUser(null);
+    setToken(null);
+    localStorage.clear(); // Clear localStorage on logout
+  };
+
+  // useEffect hook to fetch movies when the token changes (i.e., after login)
   useEffect(() => {
-    const storedUser = JSON.parse(localStorage.getItem("user"));
-    const storedToken = localStorage.getItem("token");
-
-    if (storedUser && storedToken) {
-      setUser(storedUser);
-      setToken(storedToken);
+    if (!token) {
+      // Don't fetch movies if there's no token
+      return;
     }
-  }, []);
 
-  // Fetch movies when token is available 
-  useEffect(() => {
-    if (!token) return;
-
+    // Fetch movies from your API using the token
     fetch("https://movies-flixx-19a7d58ab0e6.herokuapp.com/movies", {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+      // <-- !! REPLACE YOUR_API_URL !!
+      headers: { Authorization: `Bearer ${token}` }, // Send token in header
     })
       .then((response) => {
-        if (response.status === 401) {
-          alert("Session expired. Please log in again.");
-          handleLogout();
-          return;
-        }
         if (!response.ok) {
-          throw new Error("Failed to fetch movies");
+          // If token is expired or invalid, log out the user
+          if (response.status === 401 || response.status === 403) {
+            handleLogout();
+            throw new Error("Session expired or invalid. Please log in again.");
+          }
+          throw new Error(`HTTP error! status: ${response.status}`);
         }
         return response.json();
       })
       .then((data) => {
-        console.log("Movies from API:", data);
-        setMovies(data);
-        setError("");
+        // Process and set movie data
+        const moviesFromApi = data.map((movie) => ({
+          // Adapt this mapping based on your API response structure
+          id: movie._id, // Assuming your API returns _id
+          title: movie.Title,
+          image: movie.ImagePath,
+          description: movie.Description,
+          genre: movie.Genre.Name, // Example: nested object
+          director: movie.Director.Name, // Example: nested object
+          // Add any other fields needed by MovieCard/MovieView
+        }));
+        setMovies(moviesFromApi);
       })
-      .catch((error) => {
-        console.error("Error fetching movies:", error);
-        setError("Could not fetch movies. Please try again.");
+      .catch((e) => {
+        console.error("Fetching movies error: ", e);
+        alert(`Failed to fetch movies: ${e.message}`);
       });
-  }, [token]);
+  }, [token]); // Re-run this effect when the token changes
 
-  // Logout and clear data function
-  const handleLogout = () => {
-    setUser(null);
-    setToken(null);
-    localStorage.clear();
-  };
+  // --- Conditional Rendering Logic ---
 
-  // handle successful login
-  const handleLogin = (user, token) => {
-    setUser(user);
-    setToken(token);
-    localStorage.setItem("user", JSON.stringify(user));
-    localStorage.setItem("token", token);
-  };
-
-  // Render login or signup view if not logged in
-  if (!user) {
+  // 1. If a movie is selected, show MovieView
+  if (selectedMovie) {
     return (
-      <>
-        <LoginView onLoggedIn={handleLogin} />
-        {/* Consider a signup toggle here */}
-         <SignupView onSignedUp={handleSignup} /> 
-      </>
+      <MovieView
+        movie={selectedMovie}
+        onBackClick={() => setSelectedMovie(null)}
+      />
     );
   }
 
+  // 2. If user is logged in, show movie list and logout button
+  if (user) {
+    // Check if user object exists
+    return (
+      <div>
+        <h1>My Flix App</h1>
+        <p>Logged in as: {user.Username}</p> {/* Display username */}
+        <button onClick={handleLogout}>Logout</button> {/* Logout button */}
+        <hr />
+        {movies.length === 0 ? (
+          <div>The list is empty!</div>
+        ) : (
+          movies.map((movie) => (
+            <MovieCard
+              key={movie.id}
+              movie={movie}
+              onMovieClick={(newSelectedMovie) => {
+                setSelectedMovie(newSelectedMovie);
+              }}
+            />
+          ))
+        )}
+      </div>
+    );
+  }
 
-  // Render movies list or selected movie
+  // 3. If user is not logged in, show Login or Signup View
+  // Use the showSignup state to toggle between Login and Signup
   return (
     <div>
-      <button onClick={handleLogout}>Logout</button>
-
-      {error && <p style={{ color: "red" }}>{error}</p>}
-
-      {selectedMovie ? (
-        <MovieView movie={selectedMovie} onBack={() => setSelectedMovie(null)}
-        />
+      <h1>Welcome to myFlix!</h1>
+      {showSignup ? (
+        <>
+          <SignupView />
+          <button onClick={() => setShowSignup(false)}>
+            Already have an account? Log in
+          </button>
+        </>
       ) : (
-        <div>
-          <h1>Movies List</h1>
-          {movies.length === 0 ? (
-            <p>No movies available.</p>
-          ) : (
-            <div style={{ display: "flex", gap: "20px", flexWrap: "wrap" }}>
-              {movies.map((movie) => (
-                <MovieCard
-                  key={movie._id}
-                  movie={movie}
-                  onMovieClick={() => setSelectedMovie(movie)}
-                />
-              ))}
-            </div>
-          )}
-        </div>
+        <>
+          <LoginView onLoggedIn={handleLoggedIn} />
+          <button onClick={() => setShowSignup(true)}>
+            Don't have an account? Sign up
+          </button>
+        </>
       )}
     </div>
   );
 };
-
-export default MainView;
