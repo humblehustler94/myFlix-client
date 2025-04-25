@@ -1,5 +1,8 @@
 // src/components/main-view/main-view.jsx
 import React, { useState, useEffect } from "react";
+// --- Import React-Bootstrap components ---
+import { Container, Row, Col, Button } from "react-bootstrap"; // Import Button as well for consistency
+// ----------------------------------------
 import { MovieCard } from "../MovieCard/movie-card";
 import { MovieView } from "../MovieView/movie-view";
 import { LoginView } from "../LoginView/login-view"; // Import LoginView
@@ -77,62 +80,84 @@ export const MainView = () => {
 
   // --- Conditional Rendering Logic ---
 
-  // 1. If a movie is selected, show MovieView
+  // 1. If a movie is selected, show MovieView (wrapped in Container for consistency)
   if (selectedMovie) {
     return (
-      <MovieView
-        movie={selectedMovie}
-        onBackClick={() => setSelectedMovie(null)}
-      />
-    );
-  }
-
-  // 2. If user is logged in, show movie list and logout button
-  if (user) {
-    // Check if user object exists
-    return (
-      <div>
-        <h1>My Flix App</h1>
-        <p>Logged in as: {user.Username}</p> {/* Display username */}
-        <button onClick={handleLogout}>Logout</button> {/* Logout button */}
-        <hr />
-        {movies.length === 0 ? (
-          <div>The list is empty!</div>
-        ) : (
-          movies.map((movie) => (
-            <MovieCard
-              key={movie.id}
-              movie={movie}
-              onMovieClick={(newSelectedMovie) => {
-                setSelectedMovie(newSelectedMovie);
-              }}
+      <Container>
+        <Row className="justify-content-md-center"> {/* Optional centering */}
+          <Col md={8}> {/* Adjust width as needed */}
+            <MovieView
+              movie={selectedMovie}
+              onBackClick={() => setSelectedMovie(null)}
             />
-          ))
-        )}
-      </div>
+          </Col>
+        </Row>
+      </Container>
     );
   }
 
-  // 3. If user is not logged in, show Login or Signup View
-  // Use the showSignup state to toggle between Login and Signup
+  // 2. If user is logged in, show movie list and logout button using Bootstrap layout
+  if (user) {
+    return (
+      <Container> {/* Wrap the main content area */}
+        <Row className="my-3 align-items-center"> {/* Add some margin and align items */}
+          <Col>
+            <h1>My Flix App</h1>
+            <p>Logged in as: {user.Username}</p> {/* Display username */}
+          </Col>
+          <Col xs="auto"> {/* Column shrinks to content width */}
+            <Button variant="outline-secondary" onClick={handleLogout}>Logout</Button> {/* Logout button */}
+          </Col>
+        </Row>
+        <hr />
+        <Row> {/* Row for the movie list */}
+          {movies.length === 0 ? (
+            <Col><div>The list is empty!</div></Col> // Message if no movies
+          ) : (
+            movies.map((movie) => (
+              // Each movie gets its own Column. Adjust breakpoints as needed.
+              // sm={6}: 2 columns on small screens
+              // md={4}: 3 columns on medium screens
+              // lg={3}: 4 columns on large screens
+              // className="mb-4": Adds margin below each card
+              <Col key={movie.id} sm={6} md={4} lg={3} className="mb-4">
+                <MovieCard
+                  movie={movie}
+                  onMovieClick={(newSelectedMovie) => {
+                    setSelectedMovie(newSelectedMovie);
+                  }}
+                />
+              </Col>
+            ))
+          )}
+        </Row>
+      </Container>
+    );
+  }
+
+  // 3. If user is not logged in, show Login or Signup View (wrapped in Container)
   return (
-    <div>
-      <h1>Welcome to myFlix!</h1>
-      {showSignup ? (
-        <>
-          <SignupView />
-          <button onClick={() => setShowSignup(false)}>
-            Already have an account? Log in
-          </button>
-        </>
-      ) : (
-        <>
-          <LoginView onLoggedIn={handleLoggedIn} />
-          <button onClick={() => setShowSignup(true)}>
-            Don't have an account? Sign up
-          </button>
-        </>
-      )}
-    </div>
+    <Container> {/* Wrap login/signup area */}
+      <Row className="justify-content-md-center mt-5"> {/* Center content horizontally, add top margin */}
+        <Col md={6}> {/* Limit width of login/signup form area */}
+          <h1>Welcome to myFlix!</h1>
+          {showSignup ? (
+            <>
+              <SignupView />
+              <Button variant="link" onClick={() => setShowSignup(false)} className="mt-3">
+                Already have an account? Log in
+              </Button>
+            </>
+          ) : (
+            <>
+              <LoginView onLoggedIn={handleLoggedIn} />
+              <Button variant="link" onClick={() => setShowSignup(true)} className="mt-3">
+                Don't have an account? Sign up
+              </Button>
+            </>
+          )}
+        </Col>
+      </Row>
+    </Container>
   );
 };

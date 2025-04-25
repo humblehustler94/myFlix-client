@@ -3,6 +3,10 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types"; // Import PropTypes
 
+// Import React-Bootstrap components
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+
 export const LoginView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -50,33 +54,48 @@ export const LoginView = ({ onLoggedIn }) => {
       });
   };
 
+
+  // Use React-Bootstrap Form components
   return (
-    <form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit}>
       <h2>Login</h2>
-      <label>
-        Username:
-        <input
+      {/*Username Input Group*/}
+      <Form.Group controlId="formUsername">
+        {""}
+        {/*controlId links Label to Control for accessibility */}
+        <Form.Label>Username:</Form.Label>
+        <Form.Control
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required
           minLength="6" // Basic validation
+          placeholder="Enter username"
         />
-      </label>
+      </Form.Group>
       <br />
-      <label>
-        Password:
-        <input
+      {/*Password Input Group*/}
+      <Form.Group controlId="formPassword">
+        <Form.Label>Password:</Form.Label>
+        <Form.Control
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
-          minLength ="8"
+          minLength="8"
+          placeholder="Enter password"
         />
-      </label>
+      </Form.Group>
+
       <br />
-      <button type="submit">Submit</button>
-    </form>
+      {/*Submit Button*/}
+      <Button variant="primary" type="submit" style={{ marginTop: "1rem" }}>
+        {""}
+        {/*Added some margin-top*/}
+        Submit
+
+      </Button>
+    </Form>
   );
 };
 

@@ -2,14 +2,17 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
 import { MainView } from "./components/MainView/main-view"; // Import MainView
+
+import Container from "react-bootstrap/Container"; 
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.scss"; // Import styles
 
 // Main component renders MainView
 const MyFlixApplication = () => {
     return (
-        <div className="my-flix">
+        <Container className="my-flix">
             <MainView />
-        </div>
+        </Container>
     );
 };
 
