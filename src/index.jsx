@@ -1,7 +1,7 @@
 //This file contains the code needed to create a small working React App.
 import React from "react";
 import { createRoot } from "react-dom/client";
-import { MainView } from "./components/MainView/main-view"; // Import MainView
+import  MainView  from "./components/MainView/main-view"; // Import MainView
 
 import Container from "react-bootstrap/Container"; 
 import "bootstrap/dist/css/bootstrap.min.css";

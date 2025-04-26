@@ -1,6 +1,8 @@
 import React from "react";
 
-const MovieView = ({ movie, onBack }) => {
+import "./movie-view.scss";
+
+export const MovieView = ({ movie, onBackClick }) => {
   return (
     <div>
       <h1>{movie.title}</h1>
@@ -17,7 +19,7 @@ const MovieView = ({ movie, onBack }) => {
         <strong>Director:</strong>
         {movie.director}
       </p>
-      <button onClick={onBack}>Back</button>
+      <button onClick={onBackClick} className="back-button" style={{cursor: "pointer"}}>Back</button>
     </div>
   );
 };

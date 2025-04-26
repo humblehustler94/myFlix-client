@@ -1,13 +1,12 @@
-// Create new component folder LoginView and create the following file login-view.jsx add the following code 
 // src/components/login-view/login-view.jsx
 import React, { useState } from "react";
-import PropTypes from "prop-types"; // Import PropTypes
+import PropTypes from "prop-types";
 
 // Import React-Bootstrap components
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 
-export const LoginView = ({ onLoggedIn }) => {
+const LoginView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -20,9 +19,8 @@ export const LoginView = ({ onLoggedIn }) => {
       Password: password,
     };
 
-    // Replace with your actual API endpoint
+    // Replace with your actual API endpoint if different
     fetch("https://movies-flixx-19a7d58ab0e6.herokuapp.com/login", {
-      // <-- !! REPLACE YOUR_API_URL !!
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -54,52 +52,48 @@ export const LoginView = ({ onLoggedIn }) => {
       });
   };
 
-
-  // Use React-Bootstrap Form components
   return (
+    // Use React-Bootstrap Form component
     <Form onSubmit={handleSubmit}>
       <h2>Login</h2>
-      {/*Username Input Group*/}
-      <Form.Group controlId="formUsername">
-        {""}
-        {/*controlId links Label to Control for accessibility */}
+
+      {/* Username Field */}
+      <Form.Group controlId="formUsername"> {/* Good practice for accessibility */}
         <Form.Label>Username:</Form.Label>
         <Form.Control
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required
-          minLength="6" // Basic validation
-          placeholder="Enter username"
+          minLength={6} // Use number for prop value
+          placeholder="Enter username" // Optional: improves UX
         />
       </Form.Group>
-      <br />
-      {/*Password Input Group*/}
-      <Form.Group controlId="formPassword">
+
+      {/* Password Field */}
+      <Form.Group controlId="formPassword" className="mt-3"> {/* Add margin top */}
         <Form.Label>Password:</Form.Label>
         <Form.Control
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
-          minLength="8"
-          placeholder="Enter password"
+          minLength={8} // Use number for prop value
+          placeholder="Enter password" // Optional: improves UX
         />
       </Form.Group>
 
-      <br />
-      {/*Submit Button*/}
-      <Button variant="primary" type="submit" style={{ marginTop: "1rem" }}>
-        {""}
-        {/*Added some margin-top*/}
+      {/* Submit Button */}
+      <Button variant="primary" type="submit" className="mt-3"> {/* Add margin top and primary styling */}
         Submit
-
       </Button>
     </Form>
   );
 };
 
-// Prop type validation
+// Prop type validation remains the same
 LoginView.propTypes = {
   onLoggedIn: PropTypes.func.isRequired,
 };
+
+export default LoginView;
