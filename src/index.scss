@@ -1,5 +1,44 @@
+// 1. Override Bootstrap variables (BEFORE the import)
+$primary: #AA0000; // Example: Change primary color to a dark red
+$secondary: #555555;
+$font-family-sans-serif: "Roboto", sans-serif; // Example: Change default font
+$card-bg: #f8f9fa; // Example: Change card background
 $color: steelblue;
+
+// 2. Import Bootstrap
+@import "~bootstrap/scss/bootstrap";
+
+// 3. Add your own custom components styles or overrides (AFTER the import)
+body {
+    padding-top: 56px; // Adjust if you use a fixed navbar
+}
 
 .my-flix {
     color: $color;
 }
+
+.movie-card{
+    border: 1px solid $primary;
+}
+
+// Override specific Bootstrap styles if needed
+/* Override Bootstrap styles */
+.btn-primary {
+    background-color: #AA0000;
+    border-color: #880000;
+    font-weight: bold;
+  }
+  
+  .btn-primary:hover {
+    background-color: #880000;
+    border-color: #660000;
+  }
+  
+  .card {
+    background-color: #f8f9fa;
+  }
+  
+  /* Your custom classes */
+  .my-custom-heading {
+    color: #AA0000;
+  }
