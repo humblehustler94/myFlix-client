@@ -21625,85 +21625,63 @@ const MovieCard = /*#__PURE__*/ (0, _reactDefault.default).memo(_c = ({ movie, o
         className: "h-100 mb-4",
         children: [
             " ",
-            ImagePath && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Img, {
+            movie.image && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Img, {
                 variant: "top",
-                src: ImagePath,
-                alt: `Poster for ${title}`,
+                src: movie.image,
+                alt: `Poster for ${movie.title}`,
                 style: {
                     objectFit: 'cover',
                     height: '250px'
                 }
             }, void 0, false, {
                 fileName: "src/components/MovieCard/movie-card.jsx",
-                lineNumber: 30,
+                lineNumber: 25,
                 columnNumber: 9
-            }, undefined),
-            !ImagePath && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                style: {
-                    height: '250px',
-                    background: '#e9ecef',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    color: '#6c757d'
-                },
-                children: "No Image Available"
-            }, void 0, false, {
-                fileName: "src/components/MovieCard/movie-card.jsx",
-                lineNumber: 38,
-                columnNumber: 22
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Body, {
                 className: "d-flex flex-column",
                 children: [
                     " ",
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
-                        children: title
+                        children: movie.title
                     }, void 0, false, {
                         fileName: "src/components/MovieCard/movie-card.jsx",
-                        lineNumber: 43,
+                        lineNumber: 35,
                         columnNumber: 9
                     }, undefined),
-                    description && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Text, {
+                    movie.description && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Text, {
                         className: "flex-grow-1",
                         children: [
                             " ",
-                            description
+                            movie.description
                         ]
                     }, void 0, true, {
                         fileName: "src/components/MovieCard/movie-card.jsx",
-                        lineNumber: 47,
+                        lineNumber: 38,
                         columnNumber: 11
-                    }, undefined),
-                    !description && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                        className: "flex-grow-1"
-                    }, void 0, false, {
-                        fileName: "src/components/MovieCard/movie-card.jsx",
-                        lineNumber: 51,
-                        columnNumber: 26
                     }, undefined),
                     onMovieClick && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
                         variant: "primary",
                         onClick: handleButtonClick,
-                        "aria-label": `View details for ${title}`,
-                        className: "mt-auto align-self-start" // Aligns button to the bottom if Card.Body is flex column
+                        "aria-label": `View details for ${movie.title}`,
+                        className: "mt-auto" // Aligns button to the bottom if Card.Body is flex column
                         ,
                         children: "View Details"
                     }, void 0, false, {
                         fileName: "src/components/MovieCard/movie-card.jsx",
-                        lineNumber: 55,
+                        lineNumber: 44,
                         columnNumber: 11
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/MovieCard/movie-card.jsx",
-                lineNumber: 42,
+                lineNumber: 34,
                 columnNumber: 7
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/MovieCard/movie-card.jsx",
-        lineNumber: 27,
+        lineNumber: 22,
         columnNumber: 5
     }, undefined));
 }); // Close React.memo
@@ -21712,8 +21690,8 @@ _c1 = MovieCard;
 MovieCard.propTypes = {
     movie: (0, _propTypesDefault.default).shape({
         _id: (0, _propTypesDefault.default).string.isRequired,
-        title: (0, _propTypesDefault.default).string.isRequired,
-        description: (0, _propTypesDefault.default).string,
+        Title: (0, _propTypesDefault.default).string.isRequired,
+        Description: (0, _propTypesDefault.default).string,
         ImagePath: (0, _propTypesDefault.default).string
     }).isRequired,
     onMovieClick: (0, _propTypesDefault.default).func
