@@ -11,7 +11,7 @@ const MovieCard = React.memo(({ movie, onMovieClick }) => { // Added React.memo 
   if (!movie) return null;
 
   // Destructure movie properties for cleaner access
-  const { _id, Title, Description, ImagePath } = movie;
+  const { _id, title, description, ImagePath } = movie;
 
   const handleButtonClick = (e) => {
     e.stopPropagation(); // Prevent potential parent clicks if needed
@@ -30,30 +30,33 @@ const MovieCard = React.memo(({ movie, onMovieClick }) => { // Added React.memo 
         <Card.Img
           variant="top"
           src={ImagePath}
-          alt={`Poster for ${Title}`} // Essential for accessibility
+          alt={`Poster for ${title}`} // Essential for accessibility
           style={{ objectFit: 'cover', height: '250px' }} // Example style for consistent image size
         />
       )}
       {/* Fallback if no image? You could add an element here */}
-      {/* {!ImagePath && <div className="no-image-placeholder">No Image Available</div>} */}
+      {!ImagePath && <div style={{ height: '250px', background: '#e9ecef', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#6c757d' }}>
+        No Image Available
+      </div>}
 
       <Card.Body className="d-flex flex-column"> {/* Flex column helps align button to bottom */}
-        <Card.Title>{Title}</Card.Title>
+        <Card.Title>{title}</Card.Title>
 
         {/* Conditionally render description */}
-        {Description && (
+        {description && (
           <Card.Text className="flex-grow-1"> {/* flex-grow pushes button down */}
-            {Description}
+            {description}
           </Card.Text>
         )}
+        {!description && <div className="flex-grow-1"></div>}
 
         {/* Button rendering logic remains similar */}
         {onMovieClick && (
           <Button
             variant="primary"
             onClick={handleButtonClick} // Use the extracted handler
-            aria-label={`View details for ${Title}`}
-            className="mt-auto" // Aligns button to the bottom if Card.Body is flex column
+            aria-label={`View details for ${title}`}
+            className="mt-auto align-self-start" // Aligns button to the bottom if Card.Body is flex column
           >
             View Details
           </Button>
@@ -67,8 +70,8 @@ const MovieCard = React.memo(({ movie, onMovieClick }) => { // Added React.memo 
 MovieCard.propTypes = {
   movie: PropTypes.shape({
     _id: PropTypes.string.isRequired,
-    Title: PropTypes.string.isRequired,
-    Description: PropTypes.string, // Optional field
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string, // Optional field
     ImagePath: PropTypes.string,   // Optional field
   }).isRequired,
   onMovieClick: PropTypes.func,
