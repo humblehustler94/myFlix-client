@@ -21613,7 +21613,7 @@ const MovieCard = /*#__PURE__*/ (0, _reactDefault.default).memo(_c = ({ movie, o
     // Destructure props first
     if (!movie) return null;
     // Destructure movie properties for cleaner access
-    const { _id, title, description, ImagePath } = movie;
+    const { _id, Title, Description, ImagePath } = movie;
     const handleButtonClick = (e)=>{
         e.stopPropagation(); // Prevent potential parent clicks if needed
         // Ensure onMovieClick is callable before calling it
@@ -21625,17 +21625,17 @@ const MovieCard = /*#__PURE__*/ (0, _reactDefault.default).memo(_c = ({ movie, o
         className: "h-100 mb-4",
         children: [
             " ",
-            movie.image && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Img, {
+            ImagePath && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Img, {
                 variant: "top",
-                src: movie.image,
-                alt: `Poster for ${movie.title}`,
+                src: ImagePath,
+                alt: `Poster for ${Title}`,
                 style: {
                     objectFit: 'cover',
                     height: '250px'
                 }
             }, void 0, false, {
                 fileName: "src/components/MovieCard/movie-card.jsx",
-                lineNumber: 25,
+                lineNumber: 30,
                 columnNumber: 9
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Body, {
@@ -21643,45 +21643,45 @@ const MovieCard = /*#__PURE__*/ (0, _reactDefault.default).memo(_c = ({ movie, o
                 children: [
                     " ",
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
-                        children: movie.title
+                        children: Title
                     }, void 0, false, {
                         fileName: "src/components/MovieCard/movie-card.jsx",
-                        lineNumber: 35,
+                        lineNumber: 41,
                         columnNumber: 9
                     }, undefined),
-                    movie.description && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Text, {
+                    Description && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Text, {
                         className: "flex-grow-1",
                         children: [
                             " ",
-                            movie.description
+                            Description
                         ]
                     }, void 0, true, {
                         fileName: "src/components/MovieCard/movie-card.jsx",
-                        lineNumber: 38,
+                        lineNumber: 45,
                         columnNumber: 11
                     }, undefined),
                     onMovieClick && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
                         variant: "primary",
                         onClick: handleButtonClick,
-                        "aria-label": `View details for ${movie.title}`,
+                        "aria-label": `View details for ${Title}`,
                         className: "mt-auto" // Aligns button to the bottom if Card.Body is flex column
                         ,
                         children: "View Details"
                     }, void 0, false, {
                         fileName: "src/components/MovieCard/movie-card.jsx",
-                        lineNumber: 44,
+                        lineNumber: 52,
                         columnNumber: 11
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/MovieCard/movie-card.jsx",
-                lineNumber: 34,
+                lineNumber: 40,
                 columnNumber: 7
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/MovieCard/movie-card.jsx",
-        lineNumber: 22,
+        lineNumber: 27,
         columnNumber: 5
     }, undefined));
 }); // Close React.memo
@@ -21708,7 +21708,7 @@ $RefreshReg$(_c1, "MovieCard");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","prop-types":"7wKI2","@parcel/transformer-js/src/esmodule-helpers.js":"izZD2","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"9MDxO","react-bootstrap":"3AD9A"}],"9MDxO":[function(require,module,exports,__globalThis) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","prop-types":"7wKI2","react-bootstrap":"3AD9A","@parcel/transformer-js/src/esmodule-helpers.js":"izZD2","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"9MDxO"}],"9MDxO":[function(require,module,exports,__globalThis) {
 "use strict";
 var Refresh = require("668476f6f0d759e4");
 var { version } = require("15cc84e38daadf67");
@@ -22127,7 +22127,7 @@ $RefreshReg$(_c, "LoginView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","prop-types":"7wKI2","react-bootstrap/Form":"iBZ80","react-bootstrap/Button":"aPzUt","@parcel/transformer-js/src/esmodule-helpers.js":"izZD2","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"9MDxO"}],"bpvce":[function(require,module,exports,__globalThis) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","prop-types":"7wKI2","@parcel/transformer-js/src/esmodule-helpers.js":"izZD2","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"9MDxO","react-bootstrap/Form":"iBZ80","react-bootstrap/Button":"aPzUt"}],"bpvce":[function(require,module,exports,__globalThis) {
 var $parcel$ReactRefreshHelpers$9983 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
