@@ -18413,6 +18413,7 @@ parcelHelpers.export(exports, "MainView", ()=>MainView);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
+//import { BrowserRouter, Routes, Route, Navigate, Link } from "react-router-dom";
 // --- Import React-Bootstrap components ---
 var _reactBootstrap = require("react-bootstrap");
 // ----------------------------------------
@@ -18516,14 +18517,14 @@ const MainView = ()=>{
                                         children: "Welcome to myFlix!"
                                     }, void 0, false, {
                                         fileName: "src/components/MainView/main-view.jsx",
-                                        lineNumber: 102,
+                                        lineNumber: 103,
                                         columnNumber: 17
                                     }, undefined),
                                     showSignup ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
                                         children: [
                                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _signupViewDefault.default), {}, void 0, false, {
                                                 fileName: "src/components/MainView/main-view.jsx",
-                                                lineNumber: 105,
+                                                lineNumber: 106,
                                                 columnNumber: 21
                                             }, undefined),
                                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
@@ -18533,7 +18534,7 @@ const MainView = ()=>{
                                                 children: "Already have an account? Log in"
                                             }, void 0, false, {
                                                 fileName: "src/components/MainView/main-view.jsx",
-                                                lineNumber: 106,
+                                                lineNumber: 107,
                                                 columnNumber: 21
                                             }, undefined)
                                         ]
@@ -18543,7 +18544,7 @@ const MainView = ()=>{
                                                 onLoggedIn: handleLoggedIn
                                             }, void 0, false, {
                                                 fileName: "src/components/MainView/main-view.jsx",
-                                                lineNumber: 112,
+                                                lineNumber: 113,
                                                 columnNumber: 21
                                             }, undefined),
                                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
@@ -18553,7 +18554,7 @@ const MainView = ()=>{
                                                 children: "Don't have an account? Sign up"
                                             }, void 0, false, {
                                                 fileName: "src/components/MainView/main-view.jsx",
-                                                lineNumber: 113,
+                                                lineNumber: 114,
                                                 columnNumber: 21
                                             }, undefined)
                                         ]
@@ -18561,12 +18562,12 @@ const MainView = ()=>{
                                 ]
                             }, void 0, true, {
                                 fileName: "src/components/MainView/main-view.jsx",
-                                lineNumber: 101,
+                                lineNumber: 102,
                                 columnNumber: 15
                             }, undefined)
                         }, void 0, false, {
                             fileName: "src/components/MainView/main-view.jsx",
-                            lineNumber: 100,
+                            lineNumber: 101,
                             columnNumber: 13
                         }, undefined) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
                             children: [
@@ -18579,7 +18580,7 @@ const MainView = ()=>{
                                                     children: "My Flix App"
                                                 }, void 0, false, {
                                                     fileName: "src/components/MainView/main-view.jsx",
-                                                    lineNumber: 125,
+                                                    lineNumber: 126,
                                                     columnNumber: 19
                                                 }, undefined),
                                                 user && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
@@ -18590,13 +18591,13 @@ const MainView = ()=>{
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "src/components/MainView/main-view.jsx",
-                                                    lineNumber: 126,
+                                                    lineNumber: 127,
                                                     columnNumber: 28
                                                 }, undefined)
                                             ]
                                         }, void 0, true, {
                                             fileName: "src/components/MainView/main-view.jsx",
-                                            lineNumber: 124,
+                                            lineNumber: 125,
                                             columnNumber: 17
                                         }, undefined),
                                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
@@ -18607,18 +18608,18 @@ const MainView = ()=>{
                                                 children: "Logout"
                                             }, void 0, false, {
                                                 fileName: "src/components/MainView/main-view.jsx",
-                                                lineNumber: 129,
+                                                lineNumber: 130,
                                                 columnNumber: 19
                                             }, undefined)
                                         }, void 0, false, {
                                             fileName: "src/components/MainView/main-view.jsx",
-                                            lineNumber: 128,
+                                            lineNumber: 129,
                                             columnNumber: 17
                                         }, undefined)
                                     ]
                                 }, void 0, true, {
                                     fileName: "src/components/MainView/main-view.jsx",
-                                    lineNumber: 123,
+                                    lineNumber: 124,
                                     columnNumber: 15
                                 }, undefined),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
@@ -18634,13 +18635,13 @@ const MainView = ()=>{
                                                 onBackClick: ()=>setSelectedMovie(null)
                                             }, void 0, false, {
                                                 fileName: "src/components/MainView/main-view.jsx",
-                                                lineNumber: 139,
+                                                lineNumber: 140,
                                                 columnNumber: 21
                                             }, undefined)
                                         ]
                                     }, void 0, true, {
                                         fileName: "src/components/MainView/main-view.jsx",
-                                        lineNumber: 138,
+                                        lineNumber: 139,
                                         columnNumber: 19
                                     }, undefined) : /* 2b. If no movie is selected, show movie list */ /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
                                         children: [
@@ -18650,12 +18651,12 @@ const MainView = ()=>{
                                                     children: "Loading movies or the list is empty..."
                                                 }, void 0, false, {
                                                     fileName: "src/components/MainView/main-view.jsx",
-                                                    lineNumber: 148,
+                                                    lineNumber: 149,
                                                     columnNumber: 28
                                                 }, undefined)
                                             }, void 0, false, {
                                                 fileName: "src/components/MainView/main-view.jsx",
-                                                lineNumber: 148,
+                                                lineNumber: 149,
                                                 columnNumber: 23
                                             }, undefined) // Message if no movies
                                              : movies.map((movie)=>// Each movie gets its own Column. Adjust breakpoints as needed.
@@ -18671,19 +18672,19 @@ const MainView = ()=>{
                                                         }
                                                     }, void 0, false, {
                                                         fileName: "src/components/MainView/main-view.jsx",
-                                                        lineNumber: 153,
+                                                        lineNumber: 154,
                                                         columnNumber: 27
                                                     }, undefined)
                                                 }, movie.id, false, {
                                                     fileName: "src/components/MainView/main-view.jsx",
-                                                    lineNumber: 152,
+                                                    lineNumber: 153,
                                                     columnNumber: 25
                                                 }, undefined))
                                         ]
                                     }, void 0, true)
                                 }, void 0, false, {
                                     fileName: "src/components/MainView/main-view.jsx",
-                                    lineNumber: 134,
+                                    lineNumber: 135,
                                     columnNumber: 15
                                 }, undefined),
                                 " "
@@ -18691,21 +18692,21 @@ const MainView = ()=>{
                         }, void 0, true)
                     }, void 0, false, {
                         fileName: "src/components/MainView/main-view.jsx",
-                        lineNumber: 94,
+                        lineNumber: 95,
                         columnNumber: 9
                     }, undefined),
                     " "
                 ]
             }, void 0, true, {
                 fileName: "src/components/MainView/main-view.jsx",
-                lineNumber: 91,
+                lineNumber: 92,
                 columnNumber: 7
             }, undefined),
             " "
         ]
     }, void 0, true, {
         fileName: "src/components/MainView/main-view.jsx",
-        lineNumber: 89,
+        lineNumber: 90,
         columnNumber: 5
     }, undefined);
 };
