@@ -1,9 +1,12 @@
 // src/components/signup-view/signup-view.jsx
 import React, { useState } from "react";
+// Import React-Bootstrap components
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+// Import Link from react-router-dom if you want the "Already have an account?" link here
+import { Link } from "react-router-dom";
 
-// Define the component without exporting it directly here
+// Define the component
 const SignupView = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -19,11 +22,13 @@ const SignupView = () => {
       Username: username,
       Password: password,
       Email: email,
-      Birthday: birthday,
+      Birthday: birthday, // Ensure your API expects this format (YYYY-MM-DD)
     };
 
     try {
       // API call logic using async/await
+      // Replace with your actual API endpoint if different
+      // Consider passing API_URL as a prop from MainView or using a constant
       const response = await fetch("https://movies-flixx-19a7d58ab0e6.herokuapp.com/users", {
         method: "POST",
         body: JSON.stringify(data),
@@ -32,6 +37,7 @@ const SignupView = () => {
         },
       });
 
+      // Check if the response was successful (status code 2xx)
       if (response.ok) {
         alert("Signup successful! Please log in.");
         // Clear the form after successful signup
@@ -39,13 +45,30 @@ const SignupView = () => {
         setPassword("");
         setEmail("");
         setBirthday("");
-        // Optionally: You might want to trigger a switch back to the login view here
-        // depending on your UI setup in MainView (e.g., by calling a prop function)
+        // Optional: You can add navigation logic here if you want to
+        // automatically navigate to the login page after successful signup.
+        // import { useNavigate } from "react-router-dom";
+        // const navigate = useNavigate();
+        // navigate('/login'); // Uncomment these lines if you want auto-navigation
+
       } else {
         // If response is not OK, try to get error message from API response body
-        const errorText = await response.text(); // Read response body as text
+        // It's better to read as JSON if your API returns JSON errors
+        let errorMessage = `Signup failed: Status ${response.status}`;
+         try {
+             const errorData = await response.json();
+             if (errorData.message) {
+                 errorMessage = `Signup failed: ${errorData.message}`;
+             } else if (errorData.errors && errorData.errors.length > 0) {
+                 errorMessage = `Signup failed: ${errorData.errors.map(err => err.msg).join(', ')}`;
+             }
+         } catch (jsonError) {
+             // If JSON parsing fails, fall back to text or generic message
+             const errorText = await response.text();
+             errorMessage = `Signup failed: ${errorText || response.statusText}`;
+         }
         // Throw an error to be caught by the catch block
-        throw new Error(`Signup failed: ${errorText || response.statusText}`);
+        throw new Error(errorMessage);
       }
     } catch (e) {
       // Catch errors from the fetch call (network error) or the thrown error above
@@ -58,11 +81,10 @@ const SignupView = () => {
   return (
     // Use React-Bootstrap Form component
     <Form onSubmit={handleSubmit}>
-      <h2>Sign Up</h2>
+      {/* Title removed as it's handled in MainView */}
 
       {/* Username field */}
       <Form.Group controlId="formUsername">
-        {/* Removed unnecessary {""} */}
         <Form.Label>Username:</Form.Label>
         <Form.Control
           type="text"
@@ -116,9 +138,9 @@ const SignupView = () => {
 
       {/* Submit Button */}
       <Button variant="primary" type="submit" className="mt-3">
-        {/* Removed unnecessary {""} */}
         Submit
       </Button>
+
     </Form>
   );
 };

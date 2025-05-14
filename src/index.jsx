@@ -1,4 +1,3 @@
-//This file contains the code needed to create a small working React App.
 import React from "react";
 import { createRoot } from "react-dom/client";
 import  MainView  from "./components/MainView/main-view"; // Import MainView
@@ -26,5 +25,3 @@ if (container) {
 } else {
     console.error("Root element not found. Make sure index.html has a <div id='root'></div>.");
 }
-
-
