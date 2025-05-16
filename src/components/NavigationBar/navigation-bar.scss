@@ -1,0 +1,5 @@
+/* src/components/navigation-bar/navigation-bar.scss */
+.navbar-text a {
+    text-decoration: none; // Remove underline from links within navbar text
+    color: inherit; // Inherit color from parent
+}

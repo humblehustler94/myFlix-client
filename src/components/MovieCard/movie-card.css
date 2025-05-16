@@ -1,0 +1,30 @@
+/* src/components/MovieCard/movie-card.css*/
+.movie-card-link {
+    text-decoration: none; /* Remove underline from the link */
+    color: inherit; /* Inherit the text color from the parent (usually black) */
+    display: block; /* Make the link a block element so it takes up the full card space */
+    height: 100%; /* Ensure the link fills the height of its container (the Col) */
+    cursor: pointer; /* Indicate that the element is clickable */
+}
+
+/* Optional: Add hover effect to the card when the link is hovered */
+.movie-card-link:hover  .card { 
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15); /* Add a subtle shadow */
+    transform: translateY(-5px); /* Slightly lift the card */
+    transition: all 0.3s ease-in-out; /* Smooth the transition */
+}
+
+/* Ensure the card inside the link also takes full height */
+.movie-card-link .card {
+    height: 100%;
+}
+
+/* Optional: Basic styling for description truncation */
+.movie-card-description {
+    /* Add these styles if you want to limit the number of lines for the description */
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* number of lines to show*/
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
