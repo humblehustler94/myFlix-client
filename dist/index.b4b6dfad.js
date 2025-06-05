@@ -18569,7 +18569,7 @@ const MainView = ()=>{
                 const moviesFromApi = data.map((movie)=>({
                         id: movie._id,
                         title: movie.Title,
-                        image: movie.ImagePath ? `${API_URL}${movie.ImagePath}` : null,
+                        image: movie.ImagePath,
                         description: movie.Description,
                         genre: movie.Genre?.Name,
                         director: movie.Director?.Name
