@@ -1,7 +1,8 @@
 // src/components/main-view/main-view.jsx
 import React, { useState, useEffect } from "react";
 // --- Import React-Bootstrap components ---
-import { Container, Row, Col, Button } from "react-bootstrap"; // Keep Button for forms etc.
+// Added Form and FormControl for the search input
+import { Container, Row, Col, Button, Form, FormControl } from "react-bootstrap";
 // ----------------------------------------
 // --- Import React-Router-Dom components ---
 import { BrowserRouter, Routes, Route, Navigate, Link } from "react-router-dom";
@@ -29,6 +30,9 @@ export const MainView = () => {
   const [movies, setMovies] = useState([]);
   const [user, setUser] = useState(storedUser ? storedUser : null);
   const [token, setToken] = useState(storedToken ? storedToken : null);
+  // New state for the filter query
+  const [filter, setFilter] = useState("");
+
 
   const handleLoggedIn = (loggedInUser, loggedInToken) => {
     setUser(loggedInUser);
@@ -181,6 +185,11 @@ export const MainView = () => {
     }
   }, [token, storedUser]);
 
+  // Calculate the filtered list of movies whenever 'movies' or 'filter' changes
+  const filteredMovies = movies.filter(movie =>
+    movie.title.toLowerCase().includes(filter.toLowerCase())
+  );
+
 
   return (
     <BrowserRouter>
@@ -189,9 +198,6 @@ export const MainView = () => {
       <NavigationBar user={user} onLoggedOut={handleLogout} />
 
       <Container fluid>
-        {/* Removed the old header Row */}
-        {/* <Row className="my-3 align-items-center border-bottom pb-3 mb-4"> ... </Row> */}
-
         <Row className="justify-content-md-center">
           <Col>
             <Routes>
@@ -252,7 +258,7 @@ export const MainView = () => {
                     <Row>
                       <Col md={8} lg={9} className="mx-auto">
                         <MovieView
-                          movies={movies}
+                          movies={movies} // Pass the full movie list
                           user={user}
                           token={token}
                           onAddFavorite={handleAddFavorite}
@@ -276,7 +282,7 @@ export const MainView = () => {
                         <ProfileView
                           user={user}
                           token={token}
-                          movies={movies}
+                          movies={movies} // Pass the full movie list to profile
                           setUser={setUser}
                           onLoggedOut={handleLogout}
                           onAddFavorite={handleAddFavorite}
@@ -295,22 +301,52 @@ export const MainView = () => {
                 element={
                   !user ? (
                     <Navigate to="/login" replace />
-                  ) : movies.length === 0 ? (
-                    <Col><p>Loading movies or list is empty...</p></Col>
                   ) : (
-                    <Row>
-                      {movies.map((movie) => (
-                        <Col key={movie.id} sm={6} md={4} lg={3} className="mb-4">
-                          <MovieCard
-                            movie={movie}
-                            user={user}
-                            token={token} // Token might not be strictly needed in Card if handlers are passed
-                            onAddFavorite={handleAddFavorite}
-                            onRemoveFavorite={handleRemoveFavorite}
+                    <> {/* Use fragment to wrap multiple elements */}
+                      {/* Row for Search Input */}
+                      <Row className="justify-content-md-center mb-3">
+                        <Col xs={12} md={6} lg={4}>
+                          <Form.Control
+                            type="text"
+                            placeholder="Search movies by title..."
+                            value={filter}
+                            onChange={(e) => setFilter(e.target.value)}
                           />
                         </Col>
-                      ))}
-                    </Row>
+                      </Row>
+
+                      {/* Row for Movie Cards */}
+                      <Row>
+                        {/* Conditional rendering based on filteredMovies */}
+                        {filteredMovies.length === 0 ? (
+                          <Col xs={12}>
+                             {/* Show "Loading" if movies haven't loaded yet */}
+                            {movies.length === 0 ? (
+                              <p>Loading movies...</p>
+                            ) : filter.length > 0 ? (
+                              // Show "No movies found" if filter is active and no results
+                              <p>No movies found matching "{filter}"</p>
+                            ) : (
+                              // This case should ideally not happen if movies.length > 0 and filter is empty
+                              <p>No movies available.</p>
+                            )}
+                          </Col>
+                        ) : (
+                          // Map and render MovieCards for the filtered list
+                          filteredMovies.map((movie) => (
+                            <Col key={movie.id} sm={6} md={4} lg={3} className="mb-4">
+                              <MovieCard
+                                movie={movie}
+                                user={user}
+                                // token={token} // Not strictly needed if handlers are passed
+                                onAddFavorite={handleAddFavorite}
+                                onRemoveFavorite={handleRemoveFavorite}
+                              />
+                            </Col>
+                          ))
+                        )}
+                      </Row>
+                    </>
                   )
                 }
               />
