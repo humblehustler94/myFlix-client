@@ -87,7 +87,7 @@ export const MainView = () => {
       });
 
       if (!response.ok) {
-         if (response.status === 401 || response.status === 403) {
+        if (response.status === 401 || response.status === 403) {
           console.warn("Session expired while adding favorite. Logging out.");
           handleLogout(); // Log out if session expired
           return;
@@ -116,7 +116,7 @@ export const MainView = () => {
       });
 
       if (!response.ok) {
-         if (response.status === 401 || response.status === 403) {
+        if (response.status === 401 || response.status === 403) {
           console.warn("Session expired while removing favorite. Logging out.");
           handleLogout(); // Log out if session expired
           return;
@@ -145,7 +145,7 @@ export const MainView = () => {
       })
         .then((response) => {
           if (!response.ok) {
-             if (response.status === 401 || response.status === 403) {
+            if (response.status === 401 || response.status === 403) {
               console.warn("Session expired while fetching movies. Logging out.");
               handleLogout(); // Log out if session expired
               return; // Stop processing if logged out
@@ -173,13 +173,13 @@ export const MainView = () => {
 
     // Fetch user data initially or if token/user changes
     // Also fetches on mount if token/user exists
-     if (token && storedUser && storedUser.Username && !user) { // Only fetch if token & storedUser exist, and user state is not yet set
-       fetchUserData(storedUser.Username, token);
-     }
+    if (token && storedUser && storedUser.Username && !user) { // Only fetch if token & storedUser exist, and user state is not yet set
+      fetchUserData(storedUser.Username, token);
+    }
 
 
   }, [token, storedUser, movies.length]); // Add movies.length to dependency array to prevent infinite loop,
-                                           // and storedUser to re-fetch if user is restored from storage
+  // and storedUser to re-fetch if user is restored from storage
 
 
   // Calculate the filtered list of movies
@@ -193,123 +193,123 @@ export const MainView = () => {
   // These functions encapsulate the conditional rendering logic
   // This makes the main return block cleaner
   const RenderLoginPage = () => {
-      return user ? (
-          <Navigate to="/" replace />
-      ) : (
-          <Row className="justify-content-md-center mt-5">
-              <Col md={6}>
-                  <h1>Welcome to myFlix!</h1>
-                  <LoginView onLoggedIn={handleLoggedIn} />
-              </Col>
-          </Row>
-      );
+    return user ? (
+      <Navigate to="/" replace />
+    ) : (
+      <Row className="justify-content-md-center mt-5">
+        <Col md={6}>
+          <h1>Welcome to myFlix!</h1>
+          <LoginView onLoggedIn={handleLoggedIn} />
+        </Col>
+      </Row>
+    );
   };
 
   const RenderSignupPage = () => {
-      return user ? (
-          <Navigate to="/" replace />
-      ) : (
-          <Row className="justify-content-md-center mt-5">
-              <Col md={6}>
-                  <h1>Welcome to myFlix!</h1>
-                  <SignupView />
-              </Col>
-          </Row>
-      );
+    return user ? (
+      <Navigate to="/" replace />
+    ) : (
+      <Row className="justify-content-md-center mt-5">
+        <Col md={6}>
+          <h1>Welcome to myFlix!</h1>
+          <SignupView />
+        </Col>
+      </Row>
+    );
   };
 
-   const RenderMovieDetailPage = () => {
-      const { movieId } = useParams(); // Get ID inside the render function scope
+  const RenderMovieDetailPage = () => {
+    const { movieId } = useParams(); // Get ID inside the render function scope
 
-      // Find the movie (ensure movies is available)
-      const movie = movies.find((m) => m.id === movieId);
+    // Find the movie (ensure movies is available)
+    const movie = movies.find((m) => m.id === movieId);
 
-      if (!user) {
-          return <Navigate to="/login" replace />;
-      } else if (movies.length === 0) {
-          return <Col><p>Loading movie details...</p></Col>; // Still loading movies
-      } else if (!movie) {
-           return <Col><p>Movie not found.</p></Col>; // Movie not found in the fetched list
-      } else {
-          return (
-              <Row>
-                  <Col md={8} lg={9} className="mx-auto">
-                      <MovieView
-                          movie={movie} // Pass the specific movie object instead of the whole list
-                          user={user}
-                          token={token} // Keep token here if MovieView needs it directly for fetches
-                          onAddFavorite={handleAddFavorite}
-                          onRemoveFavorite={handleRemoveFavorite}
-                          movies={movies} // Still pass the full list for "similar movies" logic inside MovieView
-                      />
-                  </Col>
-              </Row>
-          );
-      }
+    if (!user) {
+      return <Navigate to="/login" replace />;
+    } else if (movies.length === 0) {
+      return <Col><p>Loading movie details...</p></Col>; // Still loading movies
+    } else if (!movie) {
+      return <Col><p>Movie not found.</p></Col>; // Movie not found in the fetched list
+    } else {
+      return (
+        <Row>
+          <Col md={8} lg={9} className="mx-auto">
+            <MovieView
+              movie={movie} // Pass the specific movie object instead of the whole list
+              user={user}
+              token={token} // Keep token here if MovieView needs it directly for fetches
+              onAddFavorite={handleAddFavorite}
+              onRemoveFavorite={handleRemoveFavorite}
+              movies={movies} // Still pass the full list for "similar movies" logic inside MovieView
+            />
+          </Col>
+        </Row>
+      );
+    }
   };
 
   const RenderProfilePage = () => {
-      return !user ? (
-          <Navigate to="/login" replace />
-      ) : (
-          <Row>
-              <Col md={8} lg={9} className="mx-auto">
-                  <ProfileView
-                      user={user}
-                      token={token}
-                      movies={movies} // Pass the full movie list to profile
-                      setUser={setUser}
-                      onLoggedOut={handleLogout}
-                      onAddFavorite={handleAddFavorite}
-                      onRemoveFavorite={handleRemoveFavorite}
-                  />
-              </Col>
-          </Row>
-      );
+    return !user ? (
+      <Navigate to="/login" replace />
+    ) : (
+      <Row>
+        <Col md={8} lg={9} className="mx-auto">
+          <ProfileView
+            user={user}
+            token={token}
+            movies={movies} // Pass the full movie list to profile
+            setUser={setUser}
+            onLoggedOut={handleLogout}
+            onAddFavorite={handleAddFavorite}
+            onRemoveFavorite={handleRemoveFavorite}
+          />
+        </Col>
+      </Row>
+    );
   };
 
   const RenderHomePage = () => {
-       return !user ? (
-          <Navigate to="/login" replace />
-      ) : (
-          <>
-              <Row className="justify-content-md-center mb-3">
-                  <Col xs={12} md={6} lg={4}>
-                      <Form.Control
-                          type="text"
-                          placeholder="Search movies by title..."
-                          value={filter}
-                          onChange={(e) => setFilter(e.target.value)}
-                      />
-                  </Col>
-              </Row>
+    return !user ? (
+      <Navigate to="/login" replace />
+    ) : (
+      <>
+        <Row className="justify-content-md-center mb-3">
+          <Col xs={12} md={6} lg={4}>
+            <Form.Control
+              type="text"
+              placeholder="Search movies by title..."
+              value={filter}
+              onChange={(e) => setFilter(e.target.value)}
+            />
+          </Col>
+        </Row>
 
-              <Row>
-                  {filteredMovies.length === 0 ? (
-                      <Col xs={12}>
-                          {movies.length === 0 ? (
-                              <p>Loading movies...</p>
-                          ) : filter.length > 0 ? (
-                              <p>No movies found matching "{filter}"</p>
-                          ) : (
-                              <p>No movies available.</p> // Should not happen if movies.length > 0 and filter is empty
-                          )}
-                      </Col>
-                  ) : (
-                      filteredMovies.map((movie) => (
-                          <Col key={movie.id} sm={6} md={4} lg={3} className="mb-4">
-                              <MovieCard
-                                  movie={movie}
-                                  user={user}
-                                  onAddFavorite={handleAddFavorite}
-                                  onRemoveFavorite={handleRemoveFavorite}
-                              />
-                          </Col>
-                      ))
-                  )}
-              </Row>
-          </>
-      );
+        <Row>
+          {filteredMovies.length === 0 ? (
+            <Col xs={12}>
+              {movies.length === 0 ? (
+                <p>Loading movies...</p>
+              ) : filter.length > 0 ? (
+                <p>No movies found matching "{filter}"</p>
+              ) : (
+                <p>No movies available.</p> // Should not happen if movies.length > 0 and filter is empty
+              )}
+            </Col>
+          ) : (
+            filteredMovies.map((movie) => (
+              <Col key={movie.id} sm={6} md={4} lg={3} className="mb-4">
+                <MovieCard
+                  movie={movie}
+                  user={user}
+                  onAddFavorite={handleAddFavorite}
+                  onRemoveFavorite={handleRemoveFavorite}
+                />
+              </Col>
+            ))
+          )}
+        </Row>
+      </>
+    );
   };
   // --- End Helper Functions ---
 
