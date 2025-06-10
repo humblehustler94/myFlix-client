@@ -1,7 +1,6 @@
 // src/components/main-view/main-view.jsx
 import React, { useState, useEffect } from "react";
 // --- Import React-Bootstrap components ---
-// Added Form and FormControl for the search input
 import { Container, Row, Col, Button, Form, FormControl } from "react-bootstrap";
 // ----------------------------------------
 // --- Import React-Router-Dom components ---
@@ -24,8 +23,9 @@ const API_URL = "https://movies-flixx-19a7d58ab0e6.herokuapp.com/";
 
 export const MainView = () => {
   // Get user and token from localStorage on initial load
-  const storedUser = JSON.parse(localStorage.getItem("user"));
+  // !! DELETED the 'storedUser' const from here !!
   const storedToken = localStorage.getItem("token");
+  const storedUser = JSON.parse(localStorage.getItem("user")); // This is now safe because it's only used for initial state
 
   const [movies, setMovies] = useState([]);
   const [user, setUser] = useState(storedUser ? storedUser : null);
@@ -139,27 +139,40 @@ export const MainView = () => {
     }
   };
 
-
+  //
+  // +++ THIS IS THE CORRECTED useEffect BLOCK +++
+  //
   useEffect(() => {
-    // Fetch user data on mount if token and storedUser exist
-    if (token && storedUser && storedUser.Username) {
-      fetchUserData(storedUser.Username, token); // Fetch latest user data
-      // Then fetch movies
-      fetch(`${API_URL}movies`, {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-        .then((response) => {
-          if (!response.ok) {
-            if (response.status === 401 || response.status === 403) {
-              console.warn("Session expired while fetching movies. Logging out.");
-              handleLogout();
-              return;
-            }
-            throw new Error(`HTTP error! status: ${response.status}`);
+    // If there is no token, do nothing and ensure state is clear.
+    if (!token) {
+      setMovies([]);
+      setUser(null);
+      return; // Exit early
+    }
+
+    // Since we have a token, we can proceed to fetch data.
+    const userFromStorage = JSON.parse(localStorage.getItem("user"));
+    if (userFromStorage && userFromStorage.Username) {
+        fetchUserData(userFromStorage.Username, token);
+    }
+    
+    // Fetch movies using the token
+    fetch(`${API_URL}movies`, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          if (response.status === 401 || response.status === 403) {
+            console.warn("Session expired while fetching movies. Logging out.");
+            handleLogout();
+            return null; // Return null to stop the promise chain
           }
-          return response.json();
-        })
-        .then((data) => {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        if (data) {
           const moviesFromApi = data.map((movie) => ({
             id: movie._id,
             title: movie.Title,
@@ -169,21 +182,14 @@ export const MainView = () => {
             director: movie.Director?.Name,
           }));
           setMovies(moviesFromApi);
-        })
-        .catch((e) => {
-          console.error("Fetching movies error: ", e);
-          if (!e.message.includes("Session expired")) {
-            // alert(`Failed to fetch movies: ${e.message}`); // Optional alert
-          }
-        });
-    } else {
-      // Clear movies and user state if no token or user
-      setMovies([]);
-      setUser(null);
-      setToken(null);
-      localStorage.clear();
-    }
-  }, [token, storedUser]);
+        }
+      })
+      .catch((e) => {
+        console.error("Fetching movies error: ", e);
+      });
+
+  }, [token]); // Corrected dependency array
+
 
   // Calculate the filtered list of movies whenever 'movies' or 'filter' changes
   const filteredMovies = movies.filter(movie =>
@@ -194,14 +200,13 @@ export const MainView = () => {
   return (
     <BrowserRouter>
       {/* Add the NavigationBar component here */}
-      {/* Pass the user state and the handleLogout function */}
       <NavigationBar user={user} onLoggedOut={handleLogout} />
 
       <Container fluid>
         <Row className="justify-content-md-center">
           <Col>
             <Routes>
-
+              {/* ... All your <Route> components remain exactly the same ... */}
               {/* Route for Signup */}
               <Route
                 path="/signup"
@@ -209,15 +214,10 @@ export const MainView = () => {
                   user ? (
                     <Navigate to="/" replace />
                   ) : (
-                    // SignupView is now rendered directly by the Route
-                    // The Row/Col layout for centering is applied *outside* the component
                     <Row className="justify-content-md-center mt-5">
                       <Col md={6}>
-                        {/* Add welcome title here if you want it */}
                         <h1>Welcome to myFlix!</h1>
                         <SignupView />
-                        {/* Link back to Login is now inside SignupView */}
-                        {/* <Button variant="link" as={Link} to="/login" className="mt-3 d-block text-center">...</Button> */}
                       </Col>
                     </Row>
                   )
@@ -231,15 +231,10 @@ export const MainView = () => {
                   user ? (
                     <Navigate to="/" replace />
                   ) : (
-                    // LoginView is now rendered directly by the Route
-                    // The Row/Col layout for centering is applied *outside* the component
                     <Row className="justify-content-md-center mt-5">
                       <Col md={6}>
-                        {/* Add welcome title here if you want it */}
                         <h1>Welcome to myFlix!</h1>
                         <LoginView onLoggedIn={handleLoggedIn} />
-                        {/* Link to Signup is now inside LoginView */}
-                        {/* <Button variant="link" as={Link} to="/signup" className="mt-3 d-block text-center">...</Button> */}
                       </Col>
                     </Row>
                   )
@@ -258,7 +253,7 @@ export const MainView = () => {
                     <Row>
                       <Col md={8} lg={9} className="mx-auto">
                         <MovieView
-                          movies={movies} // Pass the full movie list
+                          movies={movies}
                           user={user}
                           token={token}
                           onAddFavorite={handleAddFavorite}
@@ -282,7 +277,7 @@ export const MainView = () => {
                         <ProfileView
                           user={user}
                           token={token}
-                          movies={movies} // Pass the full movie list to profile
+                          movies={movies}
                           setUser={setUser}
                           onLoggedOut={handleLogout}
                           onAddFavorite={handleAddFavorite}
@@ -294,7 +289,6 @@ export const MainView = () => {
                 }
               />
 
-
               {/* Route for the Home page (Movie List) */}
               <Route
                 path="/"
@@ -302,7 +296,7 @@ export const MainView = () => {
                   !user ? (
                     <Navigate to="/login" replace />
                   ) : (
-                    <> {/* Use fragment to wrap multiple elements */}
+                    <>
                       {/* Row for Search Input */}
                       <Row className="justify-content-md-center mb-3">
                         <Col xs={12} md={6} lg={4}>
@@ -317,28 +311,22 @@ export const MainView = () => {
 
                       {/* Row for Movie Cards */}
                       <Row>
-                        {/* Conditional rendering based on filteredMovies */}
                         {filteredMovies.length === 0 ? (
                           <Col xs={12}>
-                             {/* Show "Loading" if movies haven't loaded yet */}
                             {movies.length === 0 ? (
                               <p>Loading movies...</p>
                             ) : filter.length > 0 ? (
-                              // Show "No movies found" if filter is active and no results
                               <p>No movies found matching "{filter}"</p>
                             ) : (
-                              // This case should ideally not happen if movies.length > 0 and filter is empty
                               <p>No movies available.</p>
                             )}
                           </Col>
                         ) : (
-                          // Map and render MovieCards for the filtered list
                           filteredMovies.map((movie) => (
                             <Col key={movie.id} sm={6} md={4} lg={3} className="mb-4">
                               <MovieCard
                                 movie={movie}
                                 user={user}
-                                // token={token} // Not strictly needed if handlers are passed
                                 onAddFavorite={handleAddFavorite}
                                 onRemoveFavorite={handleRemoveFavorite}
                               />
@@ -350,12 +338,7 @@ export const MainView = () => {
                   )
                 }
               />
-
-              {/* Optional: Catch-all Route for 404 Not Found */}
-              {/* <Route path="*" element={<Col><p>Page Not Found</p></Col>} /> */}
-
             </Routes>
-
           </Col>
         </Row>
       </Container>
