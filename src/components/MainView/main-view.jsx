@@ -9,12 +9,13 @@ import { BrowserRouter, Routes, Route, Navigate, Link } from "react-router-dom";
 // ----------------------------------------
 
 // --- Import View Components ---
-import MovieCard from "../MovieCard/movie-card";
-import MovieView from "../MovieView/movie-view";
-import LoginView from "../LoginView/login-view";
-import SignupView from "../SignupView/signup-view";
-import ProfileView from "../ProfileView/profile-view";
-// Import the NavigationBar component
+// Temporarily comment out imports for components rendered by Routes
+// import MovieCard from "../MovieCard/movie-card";
+// import MovieView from "../MovieView/movie-view";
+// import LoginView from "../LoginView/login-view";
+// import SignupView from "../SignupView/signup-view";
+// import ProfileView from "../ProfileView/profile-view";
+// Import the NavigationBar component - KEEP THIS ONE FOR NOW
 import NavigationBar from "../NavigationBar/navigation-bar";
 // ----------------------------------------
 
@@ -140,6 +141,7 @@ export const MainView = () => {
   };
 
 
+  // Keep useEffect as is for now - it's less likely to cause serialization errors during build
   useEffect(() => {
     // Fetch user data on mount if token and storedUser exist
     if (token && storedUser && storedUser.Username) {
@@ -186,6 +188,7 @@ export const MainView = () => {
   }, [token, storedUser]);
 
   // Calculate the filtered list of movies whenever 'movies' or 'filter' changes
+  // Keep this logic, it operates on data state
   const filteredMovies = movies.filter(movie =>
     movie.title.toLowerCase().includes(filter.toLowerCase())
   );
@@ -202,154 +205,38 @@ export const MainView = () => {
           <Col>
             <Routes>
 
-              {/* Route for Signup */}
+              {/* Comment out all individual Route elements */}
+              {/*
               <Route
                 path="/signup"
-                element={
-                  user ? (
-                    <Navigate to="/" replace />
-                  ) : (
-                    // SignupView is now rendered directly by the Route
-                    // The Row/Col layout for centering is applied *outside* the component
-                    <Row className="justify-content-md-center mt-5">
-                      <Col md={6}>
-                        {/* Add welcome title here if you want it */}
-                        <h1>Welcome to myFlix!</h1>
-                        <SignupView />
-                        {/* Link back to Login is now inside SignupView */}
-                        {/* <Button variant="link" as={Link} to="/login" className="mt-3 d-block text-center">...</Button> */}
-                      </Col>
-                    </Row>
-                  )
-                }
+                element={...} // Comment out or remove the element content
               />
 
-              {/* Route for Login */}
               <Route
                 path="/login"
-                element={
-                  user ? (
-                    <Navigate to="/" replace />
-                  ) : (
-                    // LoginView is now rendered directly by the Route
-                    // The Row/Col layout for centering is applied *outside* the component
-                    <Row className="justify-content-md-center mt-5">
-                      <Col md={6}>
-                        {/* Add welcome title here if you want it */}
-                        <h1>Welcome to myFlix!</h1>
-                        <LoginView onLoggedIn={handleLoggedIn} />
-                        {/* Link to Signup is now inside LoginView */}
-                        {/* <Button variant="link" as={Link} to="/signup" className="mt-3 d-block text-center">...</Button> */}
-                      </Col>
-                    </Row>
-                  )
-                }
+                element={...} // Comment out or remove the element content
               />
 
-              {/* Route for Movie Detail */}
               <Route
                 path="/movies/:movieId"
-                element={
-                  !user ? (
-                    <Navigate to="/login" replace />
-                  ) : movies.length === 0 ? (
-                    <Col><p>Loading movie details...</p></Col>
-                  ) : (
-                    <Row>
-                      <Col md={8} lg={9} className="mx-auto">
-                        <MovieView
-                          movies={movies} // Pass the full movie list
-                          user={user}
-                          token={token}
-                          onAddFavorite={handleAddFavorite}
-                          onRemoveFavorite={handleRemoveFavorite}
-                        />
-                      </Col>
-                    </Row>
-                  )
-                }
+                element={...} // Comment out or remove the element content
               />
 
-              {/* Route for User Profile */}
               <Route
                 path="/profile"
-                element={
-                  !user ? (
-                    <Navigate to="/login" replace />
-                  ) : (
-                    <Row>
-                      <Col md={8} lg={9} className="mx-auto">
-                        <ProfileView
-                          user={user}
-                          token={token}
-                          movies={movies} // Pass the full movie list to profile
-                          setUser={setUser}
-                          onLoggedOut={handleLogout}
-                          onAddFavorite={handleAddFavorite}
-                          onRemoveFavorite={handleRemoveFavorite}
-                        />
-                      </Col>
-                    </Row>
-                  )
-                }
+                element={...} // Comment out or remove the element content
               />
 
 
-              {/* Route for the Home page (Movie List) */}
               <Route
                 path="/"
-                element={
-                  !user ? (
-                    <Navigate to="/login" replace />
-                  ) : (
-                    <> {/* Use fragment to wrap multiple elements */}
-                      {/* Row for Search Input */}
-                      <Row className="justify-content-md-center mb-3">
-                        <Col xs={12} md={6} lg={4}>
-                          <Form.Control
-                            type="text"
-                            placeholder="Search movies by title..."
-                            value={filter}
-                            onChange={(e) => setFilter(e.target.value)}
-                          />
-                        </Col>
-                      </Row>
-
-                      {/* Row for Movie Cards */}
-                      <Row>
-                        {/* Conditional rendering based on filteredMovies */}
-                        {filteredMovies.length === 0 ? (
-                          <Col xs={12}>
-                            {/* Show "Loading" if movies haven't loaded yet */}
-                            {movies.length === 0 ? (
-                              <p>Loading movies...</p>
-                            ) : filter.length > 0 ? (
-                              // Show "No movies found" if filter is active and no results
-                              <p>No movies found matching "{filter}"</p>
-                            ) : (
-                              // This case should ideally not happen if movies.length > 0 and filter is empty
-                              <p>No movies available.</p>
-                            )}
-                          </Col>
-                        ) : (
-                          // Map and render MovieCards for the filtered list
-                          filteredMovies.map((movie) => (
-                            <Col key={movie.id} sm={6} md={4} lg={3} className="mb-4">
-                              <MovieCard
-                                movie={movie}
-                                user={user}
-                                // token={token} // Not strictly needed if handlers are passed
-                                onAddFavorite={handleAddFavorite}
-                                onRemoveFavorite={handleRemoveFavorite}
-                              />
-                            </Col>
-                          ))
-                        )}
-                      </Row>
-                    </>
-                  )
-                }
+                element={...} // Comment out or remove the element content
               />
+              */}
+
+              {/* Add a single, simple Route to keep React Router happy and verify the rest builds */}
+              <Route path="/" element={<Col><p>Routes commented out for build testing.</p></Col>} />
+
 
               {/* Optional: Catch-all Route for 404 Not Found */}
               {/* <Route path="*" element={<Col><p>Page Not Found</p></Col>} /> */}
