@@ -15,7 +15,7 @@
   "type": "commonjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "parcel build src/index.html --public-url /"
+    "build": "parcel build src/index.html --public-url / --no-workers"
   },
   "dependencies": {
     "bootstrap": "^5.3.5",
