@@ -83,6 +83,9 @@ File Structure should look like this
  - index.scss
  - package.json
 
+<br/>
+<br/>
+
 - Create new folder within components folder named "MovieCard 
 - Create new file within MovieCard named "movie-card.jsx" 
 - Add code 
