@@ -153,8 +153,8 @@ myFlix-client
 - Take a look at my demo here [CodeSandbox for myFlix-client App](https://codesandbox.io/p/sandbox/elated-nova-scxvh8)
 - Take a look at my demo here [CodeSandbox for Book App](https://codesandbox.io/p/sandbox/3-5-books-app-react-demo-forked-7-l4n9h7)
 
-![alt text](<Results in SignupView.png>) 
-![alt text](<Results of LoginView.png>)
+![alt text](<Results in SignupView.png>) <br/>
+![alt text](<Results of LoginView.png>) <br/>
 
 -----------------------------------------------
 ##3.6 TASK - React Bootstrap
