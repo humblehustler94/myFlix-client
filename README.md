@@ -1,6 +1,12 @@
 #Objective - Using React, build the client-side for an app called myFlix based on its existing server-side code (REST API and databases).
 ------------------------------------------------
 
+[Heroku Backend](https://movies-flixx-19a7d58ab0e6.herokuapp.com/)
+<br/>
+[Vercel Frontend](https://my-flix-client-i5y3.vercel.app/login)
+
+------------------------------------------------
+
 #Getting started:
 1. Create new repo on GitHub desktop --> new repo name: myFlix-client
 2. Publish project make sure private code checkbox is unchecked to share.
@@ -227,3 +233,4 @@ File Structure should now look like this
 
 - Take a look at my demo here [CodeSandbox for Books App](https://codesandbox.io/p/sandbox/3-7-routing-starting-repo-forked-hkfkqz)
 
+------------------------------------------------
