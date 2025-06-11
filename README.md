@@ -55,7 +55,7 @@ Create the following files and folder
 ![alt text](<4 - create new file index jsx add code.png>)
 - index.scss & code
 ![alt text](<5 - create new file index scss add code.png>) <br/>
-- index.html & code
+- index.html & code <br/>
 ![alt text](<6 - create new file index html add code.png>) 
 
 Create the README File in your project terminal
