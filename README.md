@@ -180,7 +180,7 @@ myFlix-client
 - Adding style 
 - Take a look at my demo here [CodeSandbox for Book App](https://codesandbox.io/p/sandbox/3-6-books-app-react-demo-8-nm46qx)
 
-- Results from the task
+- Results from the task <br/>
 ![alt text](<Results SignupView.png>) 
 ![alt text](<Results LoginView.png>)
 ![alt text](<displayed movie cards for app results-1.png>)
