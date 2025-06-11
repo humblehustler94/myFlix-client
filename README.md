@@ -1,8 +1,8 @@
 #Objective - Using React, build the client-side for an app called myFlix based on its existing server-side code (REST API and databases).
 ------------------------------------------------
-Live Site: [https://my-flix-client-i5y3.vercel.app/]
-[myflixsapp](https://my-flix-client-i5y3.vercel.app/login)
-Backend API:[https://movies-flixx-19a7d58ab0e6.herokuapp.com/]
+Live Site: [https://my-flix-client-i5y3.vercel.app/] <br/>
+[myflixsapp](https://my-flix-client-i5y3.vercel.app/login)<br/>
+Backend API:[https://movies-flixx-19a7d58ab0e6.herokuapp.com/]<br/>
 
 MyFlix is a responsive React-base single-page application(SPA) for browsing movies, managing user profiles, and marking favorites.
 It connects to an external API for user authentication and movie data
