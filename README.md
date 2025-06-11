@@ -3,7 +3,9 @@
 
 [Heroku Backend](https://movies-flixx-19a7d58ab0e6.herokuapp.com/)
 <br/>
-[Vercel Frontend](https://my-flix-client-i5y3.vercel.app/login)
+[Vercel Frontend](https://my-flix-client-i5y3.vercel.app/)
+
+
 
 ------------------------------------------------
 
