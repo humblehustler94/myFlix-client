@@ -33,19 +33,19 @@ with the following inside: 4 files will be rendered after completeing step 9.
 
 -----------------------------------------
 ##3.2 TASK - Building with JavaScript
-- Create a new GitHub Branch off the main branch
+- Create a new GitHub Branch off the main branch 
 Installing the following dependenices for project
-[]npm install -g parcel
-[]npm install --save react react-dom
+- npm install -g parcel
+- npm install --save react react-dom
 
 Create the following files and folder
-[] Create a src folder
-[] Create the following files that go inside src folder
-[] index.jsx & code
+- Create a src folder
+- Create the following files that go inside src folder
+- index.jsx & code
 ![alt text](<4 - create new file index jsx add code.png>)
-[] index.scss & code
+- index.scss & code
 ![alt text](<5 - create new file index scss add code.png>) 
-[] index.html & code
+- index.html & code
 ![alt text](<6 - create new file index html add code.png>) 
 
 Create the README File in your project terminal
@@ -57,19 +57,19 @@ Results in this if the steps are done correctly
 ![alt text](<2 - Results after creating 3 index files.png>)
 
 >[!Tip]
-> To view your project navigate to project in terminal or powershell
-> cd careerfoundry
-> cd myFlix-client
-> parcel src/index.html
-> a windows or chrome screen will pop up containing URL http://localhost:1234
+> To view your project navigate to project in terminal or powershell <br/>
+> cd careerfoundry <br/>
+> cd myFlix-client <br/>
+> parcel src/index.html <br/>
+> a windows or chrome screen will pop up containing URL http://localhost:1234 <br/>
 ------------------------------------------
 ##3.3 TASK - React components & Virtual DOM
 
-[] Create a new GitHub Branch off the main branch
-[] Create a new folder within src folder named "components"
-[] Create a new folder within components folder named "MainView"
-[] Create a new file within MainView folder named "main-view.jsx"
-[] install prop-types to your project 
+- Create a new GitHub Branch off the main branch
+- Create a new folder within src folder named "components"
+- Create a new folder within components folder named "MainView"
+- Create a new file within MainView folder named "main-view.jsx"
+- npm install prop-types to your project 
 
 File Structure should look like this
 - src 
@@ -81,13 +81,13 @@ File Structure should look like this
  - index.scss
  - package.json
 
-[] Create new folder within components folder named "MovieCard 
-[] Create new file within MovieCard named "movie-card.jsx" 
-[] Add code 
+- Create new folder within components folder named "MovieCard 
+- Create new file within MovieCard named "movie-card.jsx" 
+- Add code 
 
-[] Create new folder within components folder name "MovieView"
-[] Create new file within MovieView named "movie-view.jsx"
-[] Add code 
+- Create new folder within components folder name "MovieView"
+- Create new file within MovieView named "movie-view.jsx"
+- Add code 
 
 - Take a look at my [CodeSandbox for Book App](https://codesandbox.io/p/sandbox/3-3-react-components-project-setup-forked-1-4wnhgr)
 - Take a look at my demo here[CodeSandbox for myFlix-client App](https://codesandbox.io/p/sandbox/3-3-project-setup-for-myflix-final-task-2-)
@@ -98,10 +98,10 @@ File Structure should look like this
 ---------------------------------------------
 ##3.4 TASK - React Lifecycle Methods
 
-[] Create a new GitHub Branch off the main branch
-[] npm install prop-types to your project.
+- Create a new GitHub Branch off the main branch
+- npm install prop-types to your project.
 
-[] Refactor codes in main-view.jsx
+- Refactor codes in main-view.jsx
 
 - Take a look at my [CodeSandbox for Book App](https://codesandbox.io/p/sandbox/sweet-dream-6qzvwp)
 - Take a look at my demo here [CodeSandbox for myFlix-client App](https://codesandbox.io/p/sandbox/elastic-bush-29x56h)
@@ -112,9 +112,9 @@ File Structure should look like this
 ---------------------------------------------
 ##3.5 TASK - Create forms with React
 
-[] Create a new GitHub Branch off the main branch
-[] Create new components folders "LoginView" and "SignupView"
-[] Create new files "login-view.jsx" and "signup-view.jsx"
+- Create a new GitHub Branch off the main branch
+- Create new components folders "LoginView" and "SignupView"
+- Create new files "login-view.jsx" and "signup-view.jsx"
 
 - Project Structure should now look like this 
 myFlix-client
@@ -146,12 +146,12 @@ myFlix-client
 -----------------------------------------------
 ##3.6 TASK - React Bootstrap
 
-[] Create a new GitHub Branch off the main branch
-[] npm install react-bootstrap bootstrap
-[] Applying a responsive grid to your views using Bootstrap.
-[] Add container to your index.jsx file
-[] Add rows (Row) and columns (Col) to MainView.jsx
-[] Create movie-view.scss Add styling
+- Create a new GitHub Branch off the main branch
+- npm install react-bootstrap bootstrap
+- Applying a responsive grid to your views using Bootstrap.
+- Add container to your index.jsx file
+- Add rows (Row) and columns (Col) to MainView.jsx
+- Create movie-view.scss Add styling
 
 - Refactor code in the following areas
  -main-view.jsx
@@ -175,14 +175,14 @@ myFlix-client
 ------------------------------------------------
 ##3.7 TASK - Client-Side App Routing
 
-[] Create a new GitHub Branch off the main branch
-[] npm install react-router
-[] npm install react-router-dom
-[] npm install react-bootstrap-icons
+- Create a new GitHub Branch off the main branch
+- npm install react-router
+- npm install react-router-dom
+- npm install react-bootstrap-icons
 
-[] Create new component folders "ProfileView" and "NavigationBar"
-[] Create new files "profile-view.jsx" and "navigation-bar.jsx"
-[] Create new files "movie-card.css
+- Create new component folders "ProfileView" and "NavigationBar"
+- Create new files "profile-view.jsx" and "navigation-bar.jsx"
+- Create new files "movie-card.css
 
 - Refactor code in the following areas
  -main-view.jsx
