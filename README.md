@@ -33,8 +33,10 @@ with the following inside: 4 files will be rendered after completeing step 9.
 
 -----------------------------------------
 ##3.2 TASK - Building with JavaScript
-- Create a new GitHub Branch off the main branch.
-Installing the following dependenices for project
+- Create a new GitHub Branch off the main branch.<br/>
+
+Installing the following dependenices for project.
+
 - npm install -g parcel
 - npm install --save react react-dom
 
