@@ -144,7 +144,7 @@ File Structure should look like this
 - Create new components folders "LoginView" and "SignupView"
 - Create new files "login-view.jsx" and "signup-view.jsx"
 
-- Project Structure should now look like this 
+- Project Structure should now look like this <br/>
 ![alt text](<file structure 35.png>)
 
 
@@ -194,7 +194,7 @@ File Structure should look like this
 - Refactor code in the following areas:
 main-view.jsx, movie-card.jsx, movie-view.jsx, movie-view.scss, signup-view.jsx, login-view.jsx, profile-view.jsx, navigation-bar.jsx
 
-File Structure should now look like this 
+File Structure should now look like this <br/>
 ![alt text](<file structure 37.png>)
 
 - Take a look at my demo here [CodeSandbox for Books App](https://codesandbox.io/p/sandbox/3-7-routing-starting-repo-forked-hkfkqz)
