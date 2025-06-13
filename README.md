@@ -3,9 +3,9 @@
 MyFlix is a responsive React-base single-page application(SPA) for browsing movies, managing user profiles, and marking favorites.
 It connects to an external API for user authentication and movie data.
 
-Live Site: [https://my-flix-client-i5y3.vercel.app/] <br/>
+Live Site: [] <br/>
 
-Backend API:[https://movies-flixx-19a7d58ab0e6.herokuapp.com/]<br/>
+Backend API:[]<br/>
 
 ------------------------------------------------
 
@@ -82,7 +82,7 @@ Results in this if the steps are done correctly
 - npm install prop-types to your project 
 
 File Structure should look like this
-- src 
+ - src 
  - components
  - MainView
     - main-view.jsx
@@ -130,31 +130,12 @@ File Structure should look like this
 - Create new files "login-view.jsx" and "signup-view.jsx"
 
 - Project Structure should now look like this 
-myFlix-client
-    - package.json
-    - src
-      - index.html
-      - index.jsx
-      - index.scss
-      - components
-          - LoginView
-            - login-view.jsx
-          - SignupView
-            - signup-view.jsx
-          - MainView
-            - main-view.jsx
-          - MovieCard
-            - movie-card.jsx
-          - MovieView
-            - movie-view.jsx
-            - movie-view.scss     
+
 
 
 - Take a look at my demo here [CodeSandbox for myFlix-client App](https://codesandbox.io/p/sandbox/elated-nova-scxvh8)
 - Take a look at my demo here [CodeSandbox for Book App](https://codesandbox.io/p/sandbox/3-5-books-app-react-demo-forked-7-l4n9h7)
 
-![alt text](<Results in SignupView.png>) <br/>
-![alt text](<Results of LoginView.png>) <br/>
 
 -----------------------------------------------
 ##3.6 TASK - React Bootstrap
@@ -181,9 +162,7 @@ myFlix-client
 - Take a look at my demo here [CodeSandbox for Book App](https://codesandbox.io/p/sandbox/3-6-books-app-react-demo-8-nm46qx)
 
 - Results from the task <br/>
-![alt text](<Results SignupView.png>) 
-![alt text](<Results LoginView.png>)
-![alt text](<displayed movie cards for app results-1.png>)
+
 
 ------------------------------------------------
 ##3.7 TASK - Client-Side App Routing
@@ -208,31 +187,9 @@ myFlix-client
  -navigation-bar.jsx
 
 File Structure should now look like this 
- myFlix-client
-     - package.json
-     - src
-       - index.scss
-       - index.jsx
-       - index.html
-       - components
-           - LoginView
-             - login-view.jsx
-           - MainView
-             - main-view.jsx
-           - MovieCard
-             - movie-card.jsx
-             - movie-card.css
-           - MovieView
-             - movie-view.jsx
-             - movie-view.scss
-           - SignupView
-             - signup-view.jsx
-           - ProfileView
-             - profile-view.jsx
-           - NavigationBar
-             - navigation-bar.jsx
-             - navigation-bar.scss
+
 
 - Take a look at my demo here [CodeSandbox for Books App](https://codesandbox.io/p/sandbox/3-7-routing-starting-repo-forked-hkfkqz)
 
 ------------------------------------------------
+Results In the end
