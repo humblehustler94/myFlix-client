@@ -17,9 +17,27 @@ body {
     color: $color;
 }
 
-.movie-card{
+// === START OF UPDATED BLOCK ===
+.movie-card {
     border: 1px solid $primary;
+    height: 100%; // Crucial: Makes the card fill the height of its parent column
+    display: flex; // Turns the card into a flex container
+    flex-direction: column; // Stacks card elements (image, body) vertically
+
+    // Target the card-body (a standard Bootstrap class)
+    .card-body {
+        display: flex; // Also make the body a flex container
+        flex-direction: column; // Stack its children (title, text, button)
+        flex-grow: 1; // Allows the body to grow and fill empty space
+    }
+
+    // This targets all buttons inside a .movie-card element
+    button {
+        width: 100%; // Makes all buttons have the same full width
+        margin-top: auto; // The magic: Pushes the button to the bottom of the card-body
+    }
 }
+// === END OF UPDATED BLOCK ===
 
 // Override specific Bootstrap styles if needed
 /* Override Bootstrap styles */
@@ -27,18 +45,18 @@ body {
     background-color: #AA0000;
     border-color: #880000;
     font-weight: bold;
-  }
-  
-  .btn-primary:hover {
+}
+
+.btn-primary:hover {
     background-color: #880000;
     border-color: #660000;
-  }
-  
-  .card {
+}
+
+.card {
     background-color: #f8f9fa;
-  }
-  
-  /* Your custom classes */
-  .my-custom-heading {
+}
+
+/* Your custom classes */
+.my-custom-heading {
     color: #AA0000;
-  }
+}
