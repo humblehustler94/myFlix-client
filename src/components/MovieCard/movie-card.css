@@ -8,7 +8,7 @@
 }
 
 /* Optional: Add hover effect to the card when the link is hovered */
-.movie-card-link:hover  .card { 
+.movie-card-link:hover .card {
     box-shadow: 0 4px 8px rgba(0,0,0,0.15); /* Add a subtle shadow */
     transform: translateY(-5px); /* Slightly lift the card */
     transition: all 0.3s ease-in-out; /* Smooth the transition */
@@ -27,4 +27,9 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+/* ADD THIS RULE TO MAKE THE BUTTONS UNIFORM */
+.movie-card-link .card button {
+    width: 100%;
 }
