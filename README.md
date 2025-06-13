@@ -130,7 +130,7 @@ File Structure should look like this
 - Create new files "login-view.jsx" and "signup-view.jsx"
 
 - Project Structure should now look like this 
-
+![alt text](<file structure 35.png>)
 
 
 - Take a look at my demo here [CodeSandbox for myFlix-client App](https://codesandbox.io/p/sandbox/elated-nova-scxvh8)
@@ -176,20 +176,19 @@ File Structure should look like this
 - Create new files "profile-view.jsx" and "navigation-bar.jsx"
 - Create new files "movie-card.css
 
-- Refactor code in the following areas
- -main-view.jsx
- -movie-card.jsx
- -movie-view.jsx
- -movie-view.scss
- -signup-view.jsx
- -login-view.jsx
- -profile-view.jsx
- -navigation-bar.jsx
+- Refactor code in the following areas:
+main-view.jsx, movie-card.jsx, movie-view.jsx, movie-view.scss, signup-view.jsx, login-view.jsx, profile-view.jsx, navigation-bar.jsx
 
 File Structure should now look like this 
-
+![alt text](<file structure 37.png>)
 
 - Take a look at my demo here [CodeSandbox for Books App](https://codesandbox.io/p/sandbox/3-7-routing-starting-repo-forked-hkfkqz)
 
 ------------------------------------------------
-Results In the end
+Results In the end:
+![alt text](<LoginView to myFlix.png>)
+![alt text](<SignupView to myFlix.png>)
+![alt text](<MainView to myFlix.png>)
+![alt text](movieview.png)
+![alt text](<ProfileView to myFlix.png>)
+![alt text](<ProfileView to myFlix 2.png>)
