@@ -8,6 +8,21 @@ Live Site: [] <br/>
 Backend API:[]<br/>
 
 ------------------------------------------------
+Technologies Used in Project
+
+- React
+- React-Bootstrap
+- React-Bootstrap
+- React-Bootstrap-Icons
+- React-Router
+- React-Router-Dom
+- Bootstrap
+- Prop-Types
+
+DevDependenices 
+- @parcel/transformer-sass
+- Parcel
+-------------------------------------------------
 
 #Getting started:
 1. Create new repo on GitHub desktop --> new repo name: myFlix-client
