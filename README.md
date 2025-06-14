@@ -3,7 +3,7 @@
 MyFlix is a responsive React-base single-page application(SPA) for browsing movies, managing user profiles, and marking favorites.
 It connects to an external API for user authentication and movie data.
 
-Live Site: [https://my-flix-client-gmypa1ugz-itzel-elizabeth-flores-projects.vercel.app] <br/>
+Live Site: [https://my-flix-client-two.vercel.app] <br/>
 
 Backend API:[https://movies-flixx-19a7d58ab0e6.herokuapp.com]<br/>
 Hosted on Heroku 
