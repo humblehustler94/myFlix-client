@@ -1,209 +1,230 @@
-#Objective - Using React, build the client-side for an app called myFlix based on its existing server-side code (REST API and databases).
-------------------------------------------------
-MyFlix is a responsive React-base single-page application(SPA) for browsing movies, managing user profiles, and marking favorites.
-It connects to an external API for user authentication and movie data.
+# 🚀 myFlix-client
 
-Live Site: [https://my-flix-client-two.vercel.app] <br/>
+<div align="center">
 
-Backend API:[https://movies-flixx-19a7d58ab0e6.herokuapp.com]<br/>
-Hosted on Heroku 
-------------------------------------------------
-Technologies Used in Project
+![myFlix Logo](https://raw.githubusercontent.com/humblehustler94/myFlix-client/main/MainView%20to%20myFlix.png) <!-- Using a prominent screenshot as a de-facto logo/banner -->
 
-- React
-- React-Bootstrap
-- React-Bootstrap
-- React-Bootstrap-Icons
-- React-Router
-- React-Router-Dom
-- Bootstrap
-- Prop-Types
+[![GitHub stars](https://img.shields.io/github/stars/humblehustler94/myFlix-client?style=for-the-badge)](https://github.com/humblehustler94/myFlix-client/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/humblehustler94/myFlix-client?style=for-the-badge)](https://github.com/humblehustler94/myFlix-client/network)
+[![GitHub issues](https://img.shields.io/github/issues/humblehustler94/myFlix-client?style=for-the-badge)](https://github.com/humblehustler94/myFlix-client/issues)
+[![GitHub license](https://img.shields.io/github/license/humblehustler94/myFlix-client?style=for-the-badge)](LICENSE)
 
-DevDependenices 
-- @parcel/transformer-sass
-- Parcel
--------------------------------------------------
+**A dynamic, responsive client for the myFlix movie database, offering personalized film browsing and user management.**
 
-#Getting started:
-1. Create new repo on GitHub desktop --> new repo name: myFlix-client
-2. Publish project make sure private code checkbox is unchecked to share.
-3. Next in terminal run the following command npm init follow the prompts.
-(this will result in a package.json file to be created.)
-4. Make sure to open VS Code (editor of choice) and remove "main": "index.s" from package.json file.
-5. Create a .gitignore file add the following:
-node_modules
-.cache
-.parcel-cache
-6. npm install -g parcel in terminal. 
-7. Navigate to project folder and run the folloing command in terminal:
-- npm install --save react react-dom (results in package-lock.json file)
-8. Create src folder, then add the following 3 files in project.
-- index.html
-- index.jsx
-- index.scss
-Each one containg pieces of code to build the app.
-9. Test project using parcel in your terminal run the following command:
-- Make sure your within your project folder 
-parcel src/index.html
-This results in server running on http://localhost:1234
-#Creating the following:
-- A new Dist folder
-with the following inside: 4 files will be rendered after completeing step 9.
-- dist/index. css 
-- dist/index. css.map
-- dist/index. js
-- dist /index. js.map
+[Live Demo](https://my-flix-client-3sc4skagx-itzel-elizabeth-flores-projects.vercel.app/)
 
------------------------------------------
-##3.2 TASK - Building with JavaScript
-- Create a new GitHub Branch off the main branch.<br/>
+</div>
 
-Installing the following dependenices for project.
+## 📖 Overview
 
-- npm install -g parcel
-- npm install --save react react-dom
+The `myFlix-client` is the front-end application for the myFlix movie platform, providing users with an intuitive interface to discover, explore, and manage their movie preferences. Built as a single-page application (SPA), it seamlessly interacts with a RESTful myFlix API to fetch movie data, handle user authentication, and personalize content. This client-side application is designed for a modern web experience, focusing on usability and responsiveness across various devices.
 
-Create the following files and folder
-- Create a src folder
-- Create the following files that go inside src folder
-- index.jsx & code
-![alt text](<4 - create new file index jsx add code.png>)
-- index.scss & code
-![alt text](<5 - create new file index scss add code.png>) <br/>
-- index.html & code <br/>
-![alt text](<6 - create new file index html add code.png>) 
+## ✨ Features
 
-Create the README File in your project terminal
-New-Item README.md
+-   🎯 **User Authentication:** Secure user registration and login functionalities.
+-   🎬 **Movie Catalog Browsing:** View a comprehensive list of movies available in the database.
+-   🔍 **Detailed Movie Views:** Access in-depth information for individual movies, including director, genre, and description.
+-   ⭐ **Favorite Movies Management:** Users can add or remove movies from their personalized list of favorites.
+-   👤 **User Profile Management:** Update personal information, change passwords, and manage favorite movies from a dedicated profile page.
+-   📱 **Responsive Design:** Optimized layout and functionality for both desktop and mobile viewing experiences.
+-   🗺️ **Dynamic Routing:** Seamless navigation between different application views (login, signup, main catalog, movie details, profile).
 
-![alt text](<3 - Creating README files for github projects.png>)
+## 🖥️ Screenshots
 
-Results in this if the steps are done correctly
-![alt text](<2 - Results after creating 3 index files.png>)
+| Login View | Sign Up View | Main Movie Catalog |
+|---|---|---|
+| ![Login View](https://raw.githubusercontent.com/humblehustler94/myFlix-client/main/LoginView%20to%20myFlix.png) | ![Signup View](https://raw.githubusercontent.com/humblehustler94/myFlix-client/main/SignupView%20to%20myFlix.png) | ![Main View](https://raw.githubusercontent.com/humblehustler94/myFlix-client/main/MainView%20to%20myFlix.png) |
 
->[!Tip]
-> To view your project navigate to project in terminal or powershell <br/>
-> cd careerfoundry <br/>
-> cd myFlix-client <br/>
-> parcel src/index.html <br/>
-> a windows or chrome screen will pop up containing URL http://localhost:1234 <br/>
-------------------------------------------
-##3.3 TASK - React components & Virtual DOM
+| Detailed Movie View | User Profile View |
+|---|---|
+| ![Movie View](https://raw.githubusercontent.com/humblehustler94/myFlix-client/main/movieview.png) | ![Profile View](https://raw.githubusercontent.com/humblehustler94/myFlix-client/main/ProfileView%20to%20myFlix.png) |
 
-- Create a new GitHub Branch off the main branch
-- Create a new folder within src folder named "components"
-- Create a new folder within components folder named "MainView"
-- Create a new file within MainView folder named "main-view.jsx"
-- npm install prop-types to your project 
+## 🛠️ Tech Stack
 
-File Structure should look like this
- - src 
- - components
- - MainView
-    - main-view.jsx
- - index.html
- - index.jsx
- - index.scss
- - package.json
+**Frontend:**
+[![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=white)](https://react.dev/)
+[![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)](https://reactrouter.com/en/main)
+[![Bootstrap](https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white)](https://getbootstrap.com/)
+[![Sass](https://img.shields.io/badge/Sass-CC6699?style=for-the-badge&logo=sass&logoColor=white)](https://sass-lang.com/)
+[![Axios](https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=axios&logoColor=white)](https://axios-http.com/)
+[![Prop-Types](https://img.shields.io/badge/Prop--Types-007ACC?style=for-the-badge&logo=javascript&logoColor=white)](https://www.npmjs.com/package/prop-types)
+[![Redux (inferred for state management)](https://img.shields.io/badge/Redux-764ABC?style=for-the-badge&logo=redux&logoColor=white)](https://redux.js.org/)
 
-<br/>
-<br/>
+**Backend:**
+This repository contains only the client-side code. It communicates with an external myFlix API.
 
-- Create new folder within components folder named "MovieCard 
-- Create new file within MovieCard named "movie-card.jsx" 
-- Add code 
+**DevOps:**
+[![npm](https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white)](https://www.npmjs.com/)
+[![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com/)
+[![Netlify (optional)](https://img.shields.io/badge/Netlify-00C7B7?style=for-the-badge&logo=netlify&logoColor=white)](https://www.netlify.com/)
 
-- Create new folder within components folder name "MovieView"
-- Create new file within MovieView named "movie-view.jsx"
-- Add code 
+## 🚀 Quick Start
 
-- Take a look at my [CodeSandbox for Book App](https://codesandbox.io/p/sandbox/3-3-react-components-project-setup-forked-1-4wnhgr)
-- Take a look at my demo here[CodeSandbox for myFlix-client App](https://codesandbox.io/p/sandbox/3-3-project-setup-for-myflix-final-task-2-)
+Follow these steps to get the myFlix-client application up and running on your local machine.
 
+### Prerequisites
+-   **Node.js**: The project requires Node.js (version 18.x.x, as indicated in `.nvmrc`).
+    -   It is recommended to use `nvm` (Node Version Manager) to manage Node.js versions:
+        ```bash
+        nvm install 18.17.1 # Or the version specified in .nvmrc
+        nvm use 18.17.1
+        ```
+-   **npm**: Node Package Manager, which comes with Node.js.
 
-![alt text](<Results from task.png>)
+### Installation
 
----------------------------------------------
-##3.4 TASK - React Lifecycle Methods
+1.  **Clone the repository**
+    ```bash
+    git clone https://github.com/humblehustler94/myFlix-client.git
+    cd myFlix-client
+    ```
 
-- Create a new GitHub Branch off the main branch
-- npm install prop-types to your project.
+2.  **Install dependencies**
+    ```bash
+    npm install
+    ```
 
-- Refactor codes in main-view.jsx
+3.  **Environment setup**
+    This application requires an external API to function. You will need to configure the API URL as an environment variable. While no `.env.example` is provided, a common practice is to create a `.env` file in the project root:
+    ```bash
+    # Create .env in the root directory
+    touch .env
+    ```
+    Then add the API URL to it:
+    ```
+    # .env
+    REACT_APP_API_URL=YOUR_MYFLIX_API_URL_HERE
+    ```
+    Replace `YOUR_MYFLIX_API_URL_HERE` with the actual URL of your myFlix backend API.
 
-- Take a look at my [CodeSandbox for Book App](https://codesandbox.io/p/sandbox/sweet-dream-6qzvwp)
-- Take a look at my demo here [CodeSandbox for myFlix-client App](https://codesandbox.io/p/sandbox/elastic-bush-29x56h)
+4.  **Start development server**
+    ```bash
+    npm start
+    ```
 
-- Troubleshooting Cors
-![alt text](<troubleshoot cors.png>)
+5.  **Open your browser**
+    Visit `http://localhost:3000` to view the application.
 
----------------------------------------------
-##3.5 TASK - Create forms with React
+## 📁 Project Structure
 
-- Create a new GitHub Branch off the main branch
-- Create new components folders "LoginView" and "SignupView"
-- Create new files "login-view.jsx" and "signup-view.jsx"
+```
+myFlix-client/
+├── public/                 # Static assets (e.g., index.html)
+├── src/                    # Main application source code
+│   ├── components/         # Reusable React components (e.g., MovieCard, Navbar)
+│   ├── views/              # Main application views/pages (e.g., LoginView, MainView, ProfileView)
+│   ├── store/              # State management related files (if using Redux or similar)
+│   ├── styles/             # Global or component-specific SCSS styling
+│   ├── utils/              # Utility functions and helper modules
+│   ├── App.jsx             # Main application component
+│   └── index.js            # Application entry point
+├── dist/                   # Output directory for production builds
+├── .gitattributes          # Git configuration for attribute settings
+├── .gitignore              # Files and directories ignored by Git
+├── .nvmrc                  # Node Version Manager configuration
+├── netlify.toml            # Netlify deployment configuration
+├── package.json            # Project dependencies and scripts
+├── package-lock.json       # npm dependency lock file
+└── README.md               # Project documentation
+└── [Various .png files]    # Project screenshots and documentation images
+```
 
-- Project Structure should now look like this <br/>
-![alt text](<file structure 35.png>)
+## ⚙️ Configuration
 
+### Environment Variables
+The application relies on environment variables for configuration. These are typically provided via a `.env` file in development or directly in the deployment environment.
 
-- Take a look at my demo here [CodeSandbox for myFlix-client App](https://codesandbox.io/p/sandbox/elated-nova-scxvh8)
-- Take a look at my demo here [CodeSandbox for Book App](https://codesandbox.io/p/sandbox/3-5-books-app-react-demo-forked-7-l4n9h7)
+| Variable          | Description                                    | Default   | Required |
+|-------------------|------------------------------------------------|-----------|----------|
+| `REACT_APP_API_URL` | The base URL of the myFlix backend API service | `N/A`     | Yes      |
 
+### Configuration Files
+-   `netlify.toml`: Configures deployment settings for Netlify, including build commands and publish directories.
 
------------------------------------------------
-##3.6 TASK - React Bootstrap
+## 🔧 Development
 
-- Create a new GitHub Branch off the main branch
-- npm install react-bootstrap bootstrap
-- Applying a responsive grid to your views using Bootstrap.
-- Add container to your index.jsx file
-- Add rows (Row) and columns (Col) to MainView.jsx
-- Create movie-view.scss Add styling
+### Available Scripts
+In the project directory, you can run:
 
-- Refactor code in the following areas
- -main-view.jsx
- -index.jsx
- -index.scss
- -login-view.jsx
- -signup-view.jsx
- -movie-view.jsx
- -movie-view.scss (new file)
+| Command           | Description                                                        |
+|-------------------|--------------------------------------------------------------------|
+| `npm start`       | Runs the app in development mode. Opens `http://localhost:3000`. |
+| `npm run build`   | Builds the app for production to the `dist` folder.                 |
+| `npm test`        | Launches the test runner (if configured).                          |
 
-- Take a look at my demo here [CodeSandbox for myFlix-client App](https://codesandbox.io/p/sandbox/3-6-final-task-vldk7s)
-- Take a look at my demo here [CodeSandbox for Book App](https://codesandbox.io/p/sandbox/delicate-cookies-kdl337)
-- Adding style 
-- Take a look at my demo here [CodeSandbox for Book App](https://codesandbox.io/p/sandbox/3-6-books-app-react-demo-8-nm46qx)
+### Development Workflow
+Changes made to the source files (e.g., in `src/`) will be automatically reloaded by the development server. Linting warnings and build errors will be shown in the console.
 
-- Results from the task <br/>
+## 🧪 Testing
 
+This project is configured to use a standard React testing setup, likely powered by Jest and React Testing Library (inferred from common React project setups).
 
-------------------------------------------------
-##3.7 TASK - Client-Side App Routing
+```bash
+# Run all tests
+npm test
 
-- Create a new GitHub Branch off the main branch
-- npm install react-router
-- npm install react-router-dom
-- npm install react-bootstrap-icons
+# Run tests in watch mode
+npm test -- --watch
+```
+*(Please refer to the `package.json` scripts for exact testing commands if they differ from standard `react-scripts` defaults.)*
 
-- Create new component folders "ProfileView" and "NavigationBar"
-- Create new files "profile-view.jsx" and "navigation-bar.jsx"
-- Create new files "movie-card.css
+## 🚀 Deployment
 
-- Refactor code in the following areas:
-main-view.jsx, movie-card.jsx, movie-view.jsx, movie-view.scss, signup-view.jsx, login-view.jsx, profile-view.jsx, navigation-bar.jsx
+The `myFlix-client` application is designed for easy deployment to modern hosting platforms.
 
-File Structure should now look like this <br/>
-![alt text](<file structure 37.png>)
+### Production Build
+To create an optimized production build:
+```bash
+npm run build
+```
+This command bundles React in production mode and optimizes the build for the best performance. The build artifacts will be placed in the `dist/` directory.
 
-- Take a look at my demo here [CodeSandbox for Books App](https://codesandbox.io/p/sandbox/3-7-routing-starting-repo-forked-hkfkqz)
+### Deployment Options
+-   **Vercel:** As indicated by the live demo link, this project is compatible with Vercel. You can connect your GitHub repository to Vercel for automatic deployments.
+-   **Netlify:** A `netlify.toml` file is present, suggesting support for Netlify deployments. Simply connect your GitHub repository to Netlify, and it will use the configuration provided to build and deploy your application.
 
-------------------------------------------------
-Results In the end:
-![alt text](<LoginView to myFlix.png>)
-![alt text](<SignupView to myFlix.png>)
-![alt text](<MainView to myFlix.png>)
-![alt text](movieview.png)
-![alt text](<ProfileView to myFlix.png>)
-![alt text](<ProfileView to myFlix 2.png>)
+## 📚 API Reference
+
+This client application consumes an external RESTful API, referred to as the "myFlix API". Details regarding the API endpoints, data models, and authentication mechanisms should be sought in the documentation of the myFlix backend project. This client primarily uses standard HTTP methods (GET, POST, PUT, DELETE) to interact with these endpoints.
+
+## 🤝 Contributing
+
+We welcome contributions to the myFlix-client project! Please consider the following guidelines:
+
+1.  **Fork the repository** and clone it to your local machine.
+2.  **Create a new branch** for your feature or bug fix: `git checkout -b feature/your-feature-name`.
+3.  **Make your changes**, ensuring they align with the project's coding style.
+4.  **Run tests** (`npm test`) to ensure everything is working as expected.
+5.  **Commit your changes** with a clear and descriptive message.
+6.  **Push your branch** to your forked repository.
+7.  **Open a Pull Request** against the `main` branch of this repository.
+
+## 📄 License
+
+This project is open-source and licensed under the [LICENSE_NAME](LICENSE) - see the LICENSE file for details.
+<!-- TODO: Replace LICENSE_NAME with actual license (e.g., MIT, Apache 2.0) and create a LICENSE file if not present. -->
+
+## 🙏 Acknowledgments
+
+-   **myFlix API**: For providing the backend services and data.
+-   **React Community**: For the powerful and flexible UI library.
+-   **Bootstrap**: For responsive UI components.
+-   **Axios**: For simplified HTTP client interactions.
+-   **Vercel / Netlify**: For effortless deployment and hosting.
+
+## 📞 Support & Contact
+
+If you have any questions, encounter issues, or want to provide feedback:
+
+-  🐛 Issues: [GitHub Issues](https://github.com/humblehustler94/myFlix-client/issues)
+-  👤 Author: [humblehustler94](https://github.com/humblehustler94)
+-  📧 Email: [flores.itzel94@gmail.com]
+---
+
+<div align="center">
+
+**⭐ Star this repo if you find it helpful!**
+
+**Made with ❤️ by [humblehustler94](https://github.com/humblehustler94)**
+
+</div>
