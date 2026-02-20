@@ -7,7 +7,7 @@
 [![GitHub stars](https://img.shields.io/github/stars/humblehustler94/myFlix-client?style=for-the-badge)](https://github.com/humblehustler94/myFlix-client/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/humblehustler94/myFlix-client?style=for-the-badge)](https://github.com/humblehustler94/myFlix-client/network)
 [![GitHub issues](https://img.shields.io/github/issues/humblehustler94/myFlix-client?style=for-the-badge)](https://github.com/humblehustler94/myFlix-client/issues)
-[![GitHub license](https://img.shields.io/github/license/humblehustler94/myFlix-client?style=for-the-badge)](LICENSE)
+<!--[![GitHub license](https://img.shields.io/github/license/humblehustler94/myFlix-client?style=for-the-badge)](LICENSE) -->
 
 **A dynamic, responsive client for the myFlix movie database, offering personalized film browsing and user management.**
 
@@ -199,6 +199,7 @@ We welcome contributions to the myFlix-client project! Please consider the follo
 6.  **Push your branch** to your forked repository.
 7.  **Open a Pull Request** against the `main` branch of this repository.
 
+<!--
 ## 📄 License
 
 This project is open-source and licensed under the [LICENSE_NAME](LICENSE) - see the LICENSE file for details.
